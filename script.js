@@ -16,16 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     animatedElements.forEach(el => observer.observe(el));
-});
-document.querySelectorAll(".caa-card").forEach(card => {
-    card.addEventListener("click", () => {
-        document.querySelectorAll(".caa-card").forEach(c => c.classList.remove("active"));
-        card.classList.add("active");
 
-        const target = document.getElementById(card.dataset.target);
-        if (target) {
-            target.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (window.location.pathname.includes('index.html') || window.location.pathname === '/') {
+        document.body.classList.add('index-page');
+    }
+    
+    // Prevent default scroll behavior during transition
+    let isTransitioning = false;
+    
+    window.addEventListener('wheel', function(e) {
+        if (isTransitioning) {
+            e.preventDefault();
         }
-    });
+    }, { passive: false });
 });
-
