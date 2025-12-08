@@ -4,96 +4,947 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services | SiliconFuture</title>
+    <title>Services | SecEnAI</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --transition-speed: 0.6s;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Main layout */
+        .main-layout {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation Bar - FIXED AT TOP */
+        .navbar {
+            position: relative;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            flex-shrink: 0;
+            height: 80px;
+        }
+
+        /* Header Section - REDUCED HEIGHT */
+        .header-section {
+            height: 150px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .header-content {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #1e293b;
+        }
+
+        .header-content p {
+            font-size: 1rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Service Sections Container - TAKES REMAINING SPACE */
+        .service-sections-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 80px; /* Space for fixed footer */
+        }
+
+        /* Individual Service Section */
+        .service-section {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all var(--transition-speed) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 1;
+            overflow-y: auto;
+            pointer-events: none;
+            will-change: transform, opacity;
+            padding-bottom: 20px; /* Extra padding for scrolling */
+        }
+
+        .service-section.active {
+            opacity: 1;
+            transform: translateY(0);
+            z-index: 2;
+            pointer-events: all;
+        }
+
+        .service-section.prev {
+            opacity: 0;
+            transform: translateY(-20px);
+            z-index: 1;
+            transition: all var(--transition-speed) cubic-bezier(0.55, 0.085, 0.68, 0.53);
+        }
+
+        /* Section Content */
+        .section-content {
+            width: 100%;
+            max-width: 1200px;
+            padding: 25px 20px 40px; /* Increased bottom padding for footer */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            margin: 0 auto;
+            min-height: calc(100% - 40px); /* Adjust for footer */
+            box-sizing: border-box;
+        }
+
+        .text-content {
+            flex: 1;
+            max-width: 550px;
+        }
+
+        .image-content {
+            flex: 1;
+            max-width: 550px;
+        }
+
+        .image-content img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Content Animations */
+        .text-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #1e293b;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease 0.2s;
+        }
+
+        .text-content h3 {
+            font-size: 1.3rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #334155;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease 0.25s;
+        }
+
+        .text-content p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #64748b;
+            margin-bottom: 12px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease 0.3s;
+        }
+
+        .text-content ul {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            color: #64748b;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease 0.4s;
+            list-style: none;
+        }
+
+        .text-content li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 18px;
+            line-height: 1.4;
+        }
+
+        .text-content li:before {
+            content: "•";
+            color: #667eea;
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: -1px;
+        }
+
+        .text-content a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .text-content a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .image-content img {
+            opacity: 0;
+            transform: translateY(20px) scale(0.98);
+            transition: all 0.5s ease 0.3s;
+        }
+
+        .service-section.active .text-content h2,
+        .service-section.active .text-content h3,
+        .service-section.active .text-content p,
+        .service-section.active .text-content ul,
+        .service-section.active .image-content img {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Footer Section - ALWAYS FIXED AT BOTTOM */
+        .footer-section {
+            height: 80px;
+            background: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .footer-section .copyright {
+            text-align: center;
+            color: white;
+        }
+
+        .copyright p {
+            margin: 3px 0;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 1000;
+        }
+
+        .indicator-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.2);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .indicator-dot.active {
+            background: #667eea;
+            transform: scale(1.2);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        /* Scroll Down Hint */
+        .scroll-down-hint {
+            position: fixed;
+            bottom: 100px; /* Above the fixed footer */
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: #64748b;
+            animation: bounce 2s infinite;
+            z-index: 10;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-down-hint i {
+            font-size: 1.2rem;
+            margin-top: 6px;
+            display: block;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-2px);
+            }
+        }
+
+        /* Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(102, 126, 234, 0.1);
+            z-index: 1001;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.2s ease;
+            border-radius: 0 2px 2px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .section-content {
+                flex-direction: column;
+                text-align: left;
+                gap: 30px;
+                padding: 20px 20px 60px;
+            }
+
+            .text-content, .image-content {
+                max-width: 100%;
+            }
+
+            .image-content img {
+                height: 250px;
+            }
+
+            .scroll-indicator {
+                right: 15px;
+            }
+
+            .header-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .text-content h2 {
+                font-size: 1.6rem;
+            }
+            
+            .header-section {
+                height: 140px;
+            }
+            
+            .text-content h3 {
+                font-size: 1.2rem;
+            }
+            
+            .service-sections-container {
+                padding-bottom: 70px;
+            }
+            
+            .footer-section {
+                height: 70px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .scroll-down-hint {
+                display: none;
+            }
+            
+            .header-content h1 {
+                font-size: 1.6rem;
+            }
+            
+            .text-content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .section-content {
+                gap: 25px;
+                padding: 15px 15px 60px;
+            }
+            
+            .header-section {
+                height: 130px;
+            }
+            
+            .footer-section {
+                height: 65px;
+            }
+            
+            .footer-section .copyright p {
+                font-size: 0.8rem;
+            }
+            
+            .scroll-indicator {
+                gap: 6px;
+            }
+            
+            .indicator-dot {
+                width: 7px;
+                height: 7px;
+            }
+
+            .image-content img {
+                height: 220px;
+            }
+
+            .text-content h3 {
+                font-size: 1.1rem;
+                margin-top: 18px;
+            }
+
+            .text-content p {
+                font-size: 0.9rem;
+            }
+            
+            .service-sections-container {
+                padding-bottom: 65px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-content {
+                padding: 12px 12px 60px;
+                gap: 20px;
+            }
+            
+            .header-section {
+                height: 120px;
+            }
+            
+            .footer-section {
+                height: 60px;
+            }
+            
+            .header-content h1 {
+                font-size: 1.4rem;
+            }
+            
+            .text-content h2 {
+                font-size: 1.4rem;
+            }
+            
+            .image-content img {
+                height: 200px;
+            }
+            
+            .text-content h3 {
+                font-size: 1.05rem;
+                margin-top: 15px;
+            }
+            
+            .text-content p {
+                font-size: 0.85rem;
+            }
+            
+            .service-sections-container {
+                padding-bottom: 60px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo">SiliconFuture</a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="services.html" class="active">Services</a>
-                <a href="careers.html">Careers</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator">
+        <!-- Dots will be generated dynamically -->
+    </div>
+
+    <!-- Scroll Down Hint -->
+    <div class="scroll-down-hint" id="scrollHint">
+        <span>Scroll Down</span>
+        <i class="fas fa-chevron-down"></i>
+    </div>
+
+    <!-- Main Layout Container -->
+    <div class="main-layout">
+        <!-- Navigation Bar - FIXED -->
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="index.html" class="logo">SecEnAI</a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="services.html" class="active">Services</a>
+                    <a href="careers.html">Careers</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <a href="contact.html" class="btn btn-primary">Get in Touch</a>
             </div>
-            <a href="contact.html" class="btn btn-primary">Get in Touch</a>
-        </div>
-    </nav>
+        </nav>
 
-    <header class="section bg-light" style="padding-top: 120px; padding-bottom: 60px;">
-        <div class="container animate-on-scroll">
-            <h1>Our Services</h1>
-            <p style="max-width: 600px;">End-to-end semiconductor solutions from design to fabrication.</p>
-        </div>
-    </header>
-
-    <section class="section">
-        <div class="container">
-            <div class="grid-2 animate-on-scroll">
-                <div>
-                    <h2>ASIC Design</h2>
-                    <p>We specialize in Application-Specific Integrated Circuits tailored to your unique requirements.
-                        Our team handles everything from architecture to physical design.</p>
-                    <ul style="margin-top: 20px; color: var(--color-text-light);">
-                        <li>• 5nm / 7nm Process Nodes</li>
-                        <li>• Low Power Design</li>
-                        <li>• High-Speed Interfaces</li>
-                    </ul>
-                </div>
-                <div>
-                    <img src="https://images.unsplash.com/photo-1555664424-778a6902201b?auto=format&fit=crop&w=800&q=80"
-                        alt="ASIC Design" style="border-radius: 16px;">
-                </div>
+        <!-- Header Section - DYNAMIC TEXT BASED ON SECTION -->
+        <section class="header-section">
+            <div class="header-content">
+                <h1 id="dynamicHeader">AI & Semiconductor Solutions</h1>
+                <p id="dynamicSubheader">Advanced AI-powered solutions across multiple domains with cutting-edge semiconductor technology.</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section bg-light">
-        <div class="container">
-            <div class="grid-2 animate-on-scroll">
-                <div style="order: 2;"> <!-- Image on right for desktop default, but we want alternating -->
-                    <img src="https://images.unsplash.com/photo-1591405351990-4726e331f141?auto=format&fit=crop&w=800&q=80"
-                        alt="Fabrication" style="border-radius: 16px;">
+        <!-- Service Sections Container -->
+        <div class="service-sections-container">
+            <!-- Section 1: Quality Control in Agriculture/Food -->
+            <section class="service-section active" id="service-0">
+                <div class="section-content">
+                    <div class="text-content">
+                        <h2>Quality Control in Agriculture/Food</h2>
+                        
+                        <h3>Seed Quality Inspection System</h3>
+                        <p>AI-powered system analyzes seed attributes like size, shape, color, and viability to ensure optimal germination and crop yields.</p>
+                        
+                        <h3>Food Quality and Grading System</h3>
+                        <p>Computer vision and ML evaluate produce quality parameters automatically, eliminating manual grading subjectivity.</p>
+                    </div>
+                    <div class="image-content">
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80"
+                            alt="Agriculture Quality Control">
+                    </div>
                 </div>
-                <div style="order: 1;">
-                    <h2>Foundry Services</h2>
-                    <p>Our state-of-the-art fabrication facilities ensure high yield and consistent quality. We partner
-                        with top-tier foundries to offer flexible manufacturing options.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <section class="section">
-        <div class="container">
-            <div class="grid-2 animate-on-scroll">
-                <div>
-                    <h2>Testing & Packaging</h2>
-                    <p>Comprehensive testing protocols to guarantee reliability. We offer advanced packaging solutions
-                        including 2.5D and 3D integration.</p>
+            <!-- Section 2: Drones in Agriculture -->
+            <section class="service-section" id="service-1">
+                <div class="section-content">
+                    <div class="image-content">
+                        <img src= "drone_agriculture.jpg"
+                            alt="Agricultural Drones">
+                    </div>
+                    <div class="text-content">
+                        <h2>Drones in Agriculture</h2>
+                        
+                        <h3>Nutrient Deficiency Detection</h3>
+                        <p>Lightweight DL models on IoT edge devices detect nutrient deficiencies in real-time for healthier plants and higher yields.</p>
+                        
+                        <h3>Crop Disease Detection & Spraying</h3>
+                        <p>Real-time disease diagnosis and simultaneous spraying by drones to protect diverse range of crops.</p>
+                    </div>
                 </div>
-                <div>
-                    <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=800&q=80"
-                        alt="Testing" style="border-radius: 16px;">
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <footer>
-        <div class="container">
+            <!-- Section 3: Environment and Sustainability -->
+            <section class="service-section" id="service-2">
+                <div class="section-content">
+                    <div class="text-content">
+                        <h2>Environment and Sustainability</h2>
+                        
+                        <h3>Air Quality Monitoring</h3>
+                        <p>Drone-integrated sensors and smart street lights create distributed networks for real-time environmental data collection.</p>
+                        
+                        <h3>Smart Waste Management</h3>
+                        <p>Drones monitor garbage levels, detect illegal dumping, and transport waste from hard-to-access areas.</p>
+                    </div>
+                    <div class="image-content">
+                        <img src="https://images.unsplash.com/photo-1589652717521-10c0d092dea9?auto=format&fit=crop&w=1200&q=80"
+                            alt="Environment Monitoring">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Smart Systems for Infrastructure -->
+            <section class="service-section" id="service-3">
+                <div class="section-content">
+                    <div class="image-content">
+                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80"
+                            alt="Infrastructure Inspection">
+                    </div>
+                    <div class="text-content">
+                        <h2>Infrastructure Inspection & Maintenance</h2>
+                        
+                        <h3>Power Grid Inspection</h3>
+                        <p>Drones access remote/hazardous areas to capture detailed images of power lines and infrastructure.</p>
+                        
+                        <h3>Structural Damage Detection</h3>
+                        <p>AI analyzes drone-captured images to identify cracks, deformations, and surface irregularities in structures.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Automated Inspection Systems -->
+            <section class="service-section" id="service-4">
+                <div class="section-content">
+                    <div class="text-content">
+                        <h2>Automated PCB & Wafer Inspection</h2>
+                        
+                        <h3>PCB Defects Detection</h3>
+                        <p>Lightweight DL models for real-time PCB inspection to ensure reliability and safety of electronic systems.</p>
+                        
+                        <h3>Wafer Defects Detection</h3>
+                        <p>Machine vision and DL techniques for semiconductor defect detection, improving yield and reducing costs.</p>
+                    </div>
+                    <div class="image-content">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80"
+                            alt="PCB and Wafer Inspection">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: AI Chips and Hardware -->
+            <section class="service-section" id="service-5">
+                <div class="section-content">
+                    <div class="image-content">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
+                            alt="AI Chips and Hardware">
+                    </div>
+                    <div class="text-content">
+                        <h2>Precision Scalable AI Chips/Hardware</h2>
+                        
+                        <h3>Precision Scaling</h3>
+                        <p>8-bit, 4-bit, 1-bit, and digital processing for reconfigurable hardware architectures.</p>
+                        
+                        <h3>Computing in Memory DNN Accelerators</h3>
+                        <p>SRAM/NVM based accelerators to overcome von-Neumann architecture bottlenecks for energy efficiency.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: Trustworthy AI Hardware -->
+            <section class="service-section" id="service-6">
+                <div class="section-content">
+                    <div class="text-content">
+                        <h2>Trustworthy & Explainable AI Hardware</h2>
+                        
+                        <h3>Explainable AI</h3>
+                        <p>Transparent AI systems with clear reasoning behind decisions, critical for healthcare and finance applications.</p>
+                        
+                        <h3>Trustworthy AI</h3>
+                        <p>Reliable, safe, and ethically aligned AI systems that behave predictably and responsibly.</p>
+                        
+                        <p><a href="https://www.secenssemiconductors.com/solutions/index.html" target="_blank">Learn more about our solutions</a></p>
+                    </div>
+                    <div class="image-content">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80"
+                            alt="Trustworthy AI">
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer Section - ALWAYS FIXED AT BOTTOM -->
+        <section class="footer-section">
             <div class="copyright">
-                &copy; 2025 SiliconFuture Inc. All rights reserved.
+                <p>&copy; 2025 SecEnAI Inc. All rights reserved.</p>
+                <p>Innovating for a smarter tomorrow.</p>
             </div>
-        </div>
-    </footer>
+        </section>
+    </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Fast Service Sections Scrolling System
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceSections = [
+                document.getElementById('service-0'), // Quality Control in Agriculture/Food
+                document.getElementById('service-1'), // Drones in Agriculture
+                document.getElementById('service-2'), // Environment and Sustainability
+                document.getElementById('service-3'), // Smart Systems for Infrastructure
+                document.getElementById('service-4'), // Automated Inspection Systems
+                document.getElementById('service-5'), // AI Chips and Hardware
+                document.getElementById('service-6')  // Trustworthy AI Hardware (LAST)
+            ];
+            
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            const scrollHint = document.getElementById('scrollHint');
+            const progressBar = document.getElementById('progressBar');
+            const dynamicHeader = document.getElementById('dynamicHeader');
+            const dynamicSubheader = document.getElementById('dynamicSubheader');
+            
+            // Section-specific header texts
+            const headerTexts = [
+                {
+                    title: "AI in Agriculture & Food Quality",
+                    subtitle: "Advanced AI systems for seed inspection, food grading, and quality control in agriculture."
+                },
+                {
+                    title: "Agricultural Drone Technology",
+                    subtitle: "AI-powered drones for crop monitoring, disease detection, and precision agriculture."
+                },
+                {
+                    title: "Environmental AI Solutions",
+                    subtitle: "Smart monitoring systems for air quality, waste management, and sustainable environments."
+                },
+                {
+                    title: "Infrastructure Inspection AI",
+                    subtitle: "AI-driven drone systems for power grid inspection and structural damage detection."
+                },
+                {
+                    title: "Automated Manufacturing Inspection",
+                    subtitle: "AI vision systems for PCB and semiconductor wafer defect detection."
+                },
+                {
+                    title: "AI Chip Design & Hardware",
+                    subtitle: "Precision scalable AI accelerators and computing-in-memory architectures."
+                },
+                {
+                    title: "Trustworthy & Explainable AI",
+                    subtitle: "Ethical, transparent, and reliable AI hardware solutions for critical applications."
+                }
+            ];
+            
+            let currentSection = 0;
+            let isAnimating = false;
+            let lastScrollTime = 0;
+            const scrollCooldown = 100;
+
+            // Create indicator dots dynamically
+            serviceSections.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = 'indicator-dot';
+                if (index === 0) dot.classList.add('active');
+                dot.setAttribute('data-section', index);
+                scrollIndicator.appendChild(dot);
+            });
+            
+            const indicatorDots = document.querySelectorAll('.indicator-dot');
+            
+            // Initialize first section with dynamic text
+            updateActiveSection(0, true);
+            updateHeaderText(0);
+
+            // Wheel scrolling for service sections only
+            window.addEventListener('wheel', function(e) {
+                const now = Date.now();
+                
+                // Prevent multiple rapid scrolls
+                if (isAnimating || now - lastScrollTime < scrollCooldown) {
+                    e.preventDefault();
+                    return;
+                }
+                
+                lastScrollTime = now;
+                e.preventDefault();
+                
+                if (e.deltaY > 0) {
+                    // Scroll down - next service section
+                    if (currentSection < serviceSections.length - 1) {
+                        scrollToSection(currentSection + 1);
+                    }
+                } else if (e.deltaY < 0) {
+                    // Scroll up - previous service section
+                    if (currentSection > 0) {
+                        scrollToSection(currentSection - 1);
+                    }
+                }
+                
+                // Hide scroll hint
+                scrollHint.style.opacity = '0';
+            }, { passive: false });
+
+            // Keyboard navigation
+            window.addEventListener('keydown', function(e) {
+                if (isAnimating) return;
+                
+                if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+                    e.preventDefault();
+                    if (currentSection < serviceSections.length - 1) {
+                        scrollToSection(currentSection + 1);
+                    }
+                } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                    e.preventDefault();
+                    if (currentSection > 0) {
+                        scrollToSection(currentSection - 1);
+                    }
+                } else if (e.key === 'Home') {
+                    e.preventDefault();
+                    scrollToSection(0);
+                } else if (e.key === 'End') {
+                    e.preventDefault();
+                    scrollToSection(serviceSections.length - 1);
+                }
+            });
+
+            // Click on indicator dots
+            indicatorDots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const sectionIndex = parseInt(this.getAttribute('data-section'));
+                    scrollToSection(sectionIndex);
+                });
+            });
+
+            // Touch/swipe for mobile
+            let touchStartY = 0;
+            let touchStartTime = 0;
+
+            document.addEventListener('touchstart', function(e) {
+                touchStartY = e.touches[0].clientY;
+                touchStartTime = Date.now();
+            }, { passive: true });
+
+            document.addEventListener('touchend', function(e) {
+                if (isAnimating) return;
+                
+                const touchEndY = e.changedTouches[0].clientY;
+                const touchEndTime = Date.now();
+                const touchDiff = touchStartY - touchEndY;
+                const timeDiff = touchEndTime - touchStartTime;
+                
+                // Fast swipe detection
+                if (timeDiff < 200 && Math.abs(touchDiff) > 30) {
+                    if (touchDiff > 0) {
+                        // Swipe up - next service section
+                        if (currentSection < serviceSections.length - 1) {
+                            scrollToSection(currentSection + 1);
+                        }
+                    } else {
+                        // Swipe down - previous service section
+                        if (currentSection > 0) {
+                            scrollToSection(currentSection - 1);
+                        }
+                    }
+                    
+                    // Hide scroll hint
+                    scrollHint.style.opacity = '0';
+                }
+            }, { passive: true });
+
+            // FAST SCROLL - No delay
+            function scrollToSection(index) {
+                if (isAnimating || index === currentSection) return;
+                
+                isAnimating = true;
+                
+                // Mark current section as previous
+                if (serviceSections[currentSection]) {
+                    serviceSections[currentSection].classList.add('prev');
+                    serviceSections[currentSection].classList.remove('active');
+                }
+                
+                // Update current section
+                const prevSection = currentSection;
+                currentSection = index;
+                
+                // Update active section IMMEDIATELY
+                updateActiveSection(index, prevSection < index);
+                
+                // Update header text based on section
+                updateHeaderText(index);
+                
+                // Reset animation flag quickly
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 50);
+            }
+
+            // Update active section - FAST
+            function updateActiveSection(index, isForward = true) {
+                // Remove all classes from all service sections
+                serviceSections.forEach(section => {
+                    section.classList.remove('active', 'prev');
+                });
+                
+                // Add active class to current service section
+                if (serviceSections[index]) {
+                    serviceSections[index].classList.add('active');
+                }
+                
+                // Update indicator dots
+                indicatorDots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+                
+                // Update progress bar
+                updateProgressBar(index);
+                
+                // Scroll to top of the section
+                if (serviceSections[index]) {
+                    serviceSections[index].scrollTop = 0;
+                }
+            }
+
+            // Update header text based on section
+            function updateHeaderText(index) {
+                if (headerTexts[index]) {
+                    // Add fade-out effect
+                    dynamicHeader.style.opacity = '0';
+                    dynamicHeader.style.transform = 'translateY(-10px)';
+                    dynamicSubheader.style.opacity = '0';
+                    dynamicSubheader.style.transform = 'translateY(-10px)';
+                    
+                    // Change text after a brief delay
+                    setTimeout(() => {
+                        dynamicHeader.textContent = headerTexts[index].title;
+                        dynamicSubheader.textContent = headerTexts[index].subtitle;
+                        
+                        // Add fade-in effect
+                        dynamicHeader.style.opacity = '1';
+                        dynamicHeader.style.transform = 'translateY(0)';
+                        dynamicSubheader.style.opacity = '1';
+                        dynamicSubheader.style.transform = 'translateY(0)';
+                    }, 150);
+                    
+                    // Add smooth transition
+                    dynamicHeader.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                    dynamicSubheader.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                }
+            }
+
+            // Update progress bar
+            function updateProgressBar(index) {
+                const progress = ((index + 1) / serviceSections.length) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+
+            // Auto-hide scroll hint after 3 seconds
+            setTimeout(() => {
+                scrollHint.style.opacity = '0';
+                scrollHint.style.pointerEvents = 'none';
+            }, 3000);
+
+            // Prevent spacebar from scrolling
+            window.addEventListener('keydown', function(e) {
+                if (e.code === 'Space') {
+                    e.preventDefault();
+                }
+            });
+
+            // Initial progress bar update
+            updateProgressBar(0);
+        });
+    </script>
 </body>
 
 </html>
