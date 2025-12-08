@@ -4,17 +4,393 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | SiliconFuture</title>
+    <title>Home | SecEnAI</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Backward Navigation Styles */
+        :root {
+            --hero-bg-color: #0a1929;
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-bg: linear-gradient(145deg, #ffffff, #f8fafc);
+        }
+
+        .preload * {
+            animation-duration: 0s !important;
+            transition: none !important;
+        }
+
+        body {
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Section Styling - ADJUSTED PADDING */
+        .section {
+            padding: 60px 0; /* Reduced from 80px */
+        }
+
+        /* Hero Section - ADJUSTED PADDING */
+        .hero {
+            background: linear-gradient(135deg, #0a1929 0%, #1e293b 100%);
+            color: white;
+            padding: 100px 0 60px; /* Reduced from 120px 0 80px */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        /* Sliding Content Sections - ADJUSTED PADDING */
+        .sliding-section {
+            position: relative;
+            overflow: hidden;
+            padding: 80px 0; /* Reduced from 100px */
+            background: white;
+        }
+
+        .sliding-section:nth-child(even) {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+
+        .content-slider {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .slider-container {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .slider-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .slider-content.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slider-content.exit {
+            opacity: 0;
+            transform: translateX(-100px);
+        }
+
+        .slider-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .slider-image {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .slider-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .slider-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: #1e293b;
+        }
+
+        .slider-text h3 {
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
+            color: #334155;
+        }
+
+        .slider-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+
+        .slider-text ul {
+            margin: 20px 0;
+            padding-left: 20px;
+            color: #64748b;
+        }
+
+        .slider-text li {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .slider-text li:before {
+            content: "•";
+            color: #667eea;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        /* Slider Controls */
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .slider-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .slider-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .slider-dots {
+            display: flex;
+            gap: 15px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background: #667eea;
+            transform: scale(1.3);
+        }
+
+        /* Technology Grid */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0; /* Reduced from 60px */
+        }
+
+        .tech-card {
+            background: white;
+            padding: 35px; /* Reduced from 40px */
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .tech-card h3 {
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+
+        .tech-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* Why Choose Section */
+        .why-choose-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px; /* Reduced from 30px */
+            margin-top: 40px; /* Reduced from 50px */
+        }
+
+        .reason-card {
+            background: white;
+            padding: 25px; /* Reduced from 30px */
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #667eea;
+        }
+
+        .reason-card h4 {
+            font-size: 1.3rem;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .reason-card p {
+            color: #64748b;
+            font-size: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .slider-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .slider-text, .slider-image {
+                max-width: 100%;
+            }
+
+            .slider-image img {
+                height: 300px;
+            }
+
+            .slider-text h2 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 50px 0; /* Adjusted for mobile */
+            }
+
+            .hero {
+                padding: 80px 0 40px; /* Adjusted for mobile */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .sliding-section {
+                padding: 60px 0; /* Reduced for mobile */
+            }
+
+            .slider-text h2 {
+                font-size: 1.8rem;
+            }
+
+            .slider-text p {
+                font-size: 1rem;
+            }
+
+            .tech-grid {
+                gap: 20px;
+                margin: 40px 0;
+            }
+
+            .tech-card {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 0 30px; /* Further reduced for mobile */
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sliding-section {
+                padding: 50px 0; /* Further reduced for mobile */
+            }
+
+            .section {
+                padding: 40px 0; /* Further reduced for mobile */
+            }
+        }
+    </style>
 </head>
 
 <body>
 
+    <script>
+        // Prevent FOUC
+        document.documentElement.className = 'preload';
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                document.documentElement.className = '';
+            }, 100);
+        });
+    </script>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo">SiliconFuture</a>
+            <a href="index.html" class="logo">SecEnAI</a>
             <div class="nav-links">
                 <a href="index.html" class="active">Home</a>
                 <a href="services.html">Services</a>
@@ -28,102 +404,458 @@
 
     <!-- Hero Section -->
     <header class="hero">
-        <div class="hero-bg-shape"></div>
-        <div class="container">
-            <div class="hero-content animate-on-scroll">
-                <h1>Powering the Next Generation of Tech</h1>
-                <p>We design and manufacture high-performance semiconductor solutions that drive innovation across
-                    industries.</p>
-                <div style="margin-top: 30px;">
-                    <a href="services.html" class="btn btn-primary">Explore Solutions</a>
-                    <a href="about.html" class="btn btn-outline" style="margin-left: 15px;">Learn More</a>
-                </div>
+        <div class="hero-content">
+            <h1>SecEnAI: Powering AI with Next-Gen Semiconductors</h1>
+            <p>Secure, trustworthy AI solutions from edge to cloud with lightweight deployment and consolidated telephony architecture.</p>
+            <div style="margin-top: 40px;">
+                <a href="services.html" class="btn btn-primary">Explore AI Solutions</a>
+                <a href="contact.html" class="btn btn-outline" style="margin-left: 15px; background: rgba(255,255,255,0.1); color: white; border-color: white;">Contact Us</a>
             </div>
         </div>
     </header>
 
-    <!-- Features Section -->
-    <section class="section">
-        <div class="container">
-            <div class="animate-on-scroll" style="text-align: center; max-width: 700px; margin: 0 auto 60px;">
-                <h2>Why Choose SiliconFuture?</h2>
-                <p>Leading the way in efficiency, performance, and scalability.</p>
+    <!-- Section 1: AI-Centric Semiconductor Technologies -->
+    <section class="sliding-section">
+        <div class="content-slider">
+            <div class="slider-container">
+                <!-- Slide 1 -->
+                <div class="slider-content active">
+                    <div class="slider-text">
+                        <h2>AI-Centric Semiconductor Technologies</h2>
+                        <h3>AI Chip Design & Development</h3>
+                        <p>Custom AI chips featuring power-efficient architectures optimized for deep learning and machine intelligence workloads.</p>
+                        
+                        <h3>Edge Computing Hardware</h3>
+                        <p>AI inference and memory solutions for real-time processing, providing scalable semiconductor solutions for AI-driven workloads.</p>
+                        
+                        <h3>Advanced Semiconductor Test & Validation</h3>
+                        <p>AI-powered chip testing for performance and reliability, enhancing custom validation frameworks for next-generation AI applications.</p>
+                    </div>
+                    <div class="slider-image">
+                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80"
+                            alt="AI Chip Design">
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="slider-content">
+                    <div class="slider-text">
+                        <h2>Domains We Transform</h2>
+                        
+                        <div class="tech-grid">
+                            <div class="tech-card">
+                                <h3>Chip Design & Manufacturing</h3>
+                                <p>Advanced semiconductor solutions for diverse applications including UAVs and autonomous systems.</p>
+                            </div>
+                            <div class="tech-card">
+                                <h3>Edge Computing Hardware</h3>
+                                <p>Low-power, high-performance processors for real-time AI inference at the edge.</p>
+                            </div>
+                            <div class="tech-card">
+                                <h3>Healthcare Solutions</h3>
+                                <p>AI-powered semiconductor solutions for medical devices and health monitoring systems.</p>
+                            </div>
+                            <div class="tech-card">
+                                <h3>Smart City Infrastructure</h3>
+                                <p>Intelligent semiconductor systems for urban management, transportation, and public services.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-image">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80"
+                            alt="Domains We Transform">
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="slider-content">
+                    <div class="slider-text">
+                        <h2>AI-Native Semiconductor Design</h2>
+                        <p>Optimized for intelligence, speed, and efficiency, our semiconductor designs push performance boundaries for AI applications.</p>
+                        
+                        <h3>Why Choose SecEnAI?</h3>
+                        
+                        <div class="why-choose-grid">
+                            <div class="reason-card">
+                                <h4>Scalable AI Processing Solutions</h4>
+                                <p>In the era of deep learning and big data, we provide qualified tech solutions that align with your AI needs.</p>
+                            </div>
+                            <div class="reason-card">
+                                <h4>Precision Testing & Validation</h4>
+                                <p>Ensuring reliability for next-generation AI applications through rigorous testing and validation processes.</p>
+                            </div>
+                            <div class="reason-card">
+                                <h4>Expertise in AI Edge Computing</h4>
+                                <p>Specialized in development and testing of AI leadership solutions for secure and trustworthy systems.</p>
+                            </div>
+                            <div class="reason-card">
+                                <h4>Cutting-Edge Research</h4>
+                                <p>Continuous innovation in AI hardware design and semiconductor technology.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-image">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
+                            alt="AI Native Design">
+                    </div>
+                </div>
             </div>
-            <div class="grid-3">
-                <div class="card animate-on-scroll delay-100">
-                    <div class="icon-box">⚡</div>
-                    <h3>High Efficiency</h3>
-                    <p>Our chips are designed to maximize performance while minimizing power consumption.</p>
+
+            <div class="slider-controls">
+                <button class="slider-btn prev-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="slider-dots">
+                    <button class="slider-dot active" data-index="0"></button>
+                    <button class="slider-dot" data-index="1"></button>
+                    <button class="slider-dot" data-index="2"></button>
                 </div>
-                <div class="card animate-on-scroll delay-200">
-                    <div class="icon-box">🛡️</div>
-                    <h3>Reliability</h3>
-                    <p>Rigorous testing ensures our semiconductors perform flawlessly in critical applications.</p>
-                </div>
-                <div class="card animate-on-scroll delay-300">
-                    <div class="icon-box">🚀</div>
-                    <h3>Innovation</h3>
-                    <p>Pushing the boundaries of physics to deliver smaller, faster, and smarter nodes.</p>
-                </div>
+                
+                <button class="slider-btn next-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- About Teaser -->
-    <section class="section bg-light">
-        <div class="container grid-2">
-            <div class="animate-on-scroll">
-                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
-                    alt="Chip Wafer" style="border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+    <!-- Section 2: Expert in AI Edge Computing -->
+    <section class="sliding-section">
+        <div class="content-slider">
+            <div class="slider-container">
+                <!-- Slide 1 -->
+                <div class="slider-content active">
+                    <div class="slider-text">
+                        <h2>Expert in AI Edge Computing Solutions</h2>
+                        <h3>AI-Optimized Designs</h3>
+                        <p>SecEnAI specializes in development and testing of AI leadership, providing optimized solutions for diverse applications.</p>
+                        
+                        <p>We are engineers, researchers, problem-solvers, and AI-based system enablers. Join us in shaping the future of AI-driven semiconductors toward secure, trustworthy edge computing applications.</p>
+                        
+                        <ul>
+                            <li>Secure AI hardware architecture</li>
+                            <li>Trustworthy computing platforms</li>
+                            <li>Lightweight deployment solutions</li>
+                            <li>Real-time edge processing</li>
+                        </ul>
+                    </div>
+                    <div class="slider-image">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80"
+                            alt="Edge Computing">
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="slider-content">
+                    <div class="slider-text">
+                        <h2>Our Team & Culture</h2>
+                        <p>We are a team of passionate engineers, researchers, and problem-solvers dedicated to advancing AI semiconductor technology.</p>
+                        
+                        <div class="tech-grid">
+                            <div class="tech-card">
+                                <h3>Training Programs</h3>
+                                <p>Comprehensive training for engineers in AI hardware design and semiconductor technology.</p>
+                            </div>
+                            <div class="tech-card">
+                                <h3>Internship Opportunities</h3>
+                                <p>Hands-on experience with cutting-edge AI hardware projects and research initiatives.</p>
+                            </div>
+                            <div class="tech-card">
+                                <h3>Career Growth</h3>
+                                <p>Opportunities for professional development in emerging AI semiconductor fields.</p>
+                            </div>
+                            <div class="tech-card">
+                                <h3>Research Collaboration</h3>
+                                <p>Partnerships with academic institutions and industry leaders.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-image">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+                            alt="Team Collaboration">
+                    </div>
+                </div>
             </div>
-            <div class="animate-on-scroll delay-200">
-                <h2>Decades of Expertise</h2>
-                <p>Founded in 2005, SiliconFuture has been at the forefront of the semiconductor revolution. From
-                    consumer electronics to automotive systems, our silicon is the heartbeat of modern technology.</p>
-                <a href="about.html" class="btn btn-primary">Read Our Story</a>
+
+            <div class="slider-controls">
+                <button class="slider-btn prev-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="slider-dots">
+                    <button class="slider-dot active" data-index="0"></button>
+                    <button class="slider-dot" data-index="1"></button>
+                </div>
+                
+                <button class="slider-btn next-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
     </section>
+
+    <!-- REMOVED: Contact Information Section -->
 
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <div class="logo" style="color: white; margin-bottom: 20px;">SiliconFuture</div>
-                    <p style="color: rgba(255,255,255,0.7);">Innovating for a smarter tomorrow.</p>
+                    <div class="logo" style="color: white; margin-bottom: 20px;">SecEnAI</div>
+                    <p style="color: rgba(255,255,255,0.7);">Powering AI with Next-Gen Semiconductors</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Company</h4>
+                    <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
                         <li><a href="careers.html">Careers</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="about.html">About</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Solutions</h4>
+                    <h4>Services</h4>
                     <ul>
-                        <li><a href="services.html">Automotive</a></li>
-                        <li><a href="services.html">IoT</a></li>
-                        <li><a href="services.html">Data Centers</a></li>
+                        <li><a href="services.html">AI Chip Design</a></li>
+                        <li><a href="services.html">Edge Computing</a></li>
+                        <li><a href="services.html">Semiconductor Testing</a></li>
+                        <li><a href="services.html">AI Solutions</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Connect</h4>
+                    <h4>Contact</h4>
                     <ul>
-                        <li><a href="#">LinkedIn</a></li>
-                        <li><a href="#">Twitter</a></li>
+                        <li><a href="mailto:automata@schemtech.com">Email Us</a></li>
+                        <li><a href="tel:80078909999">Call Us</a></li>
+                        <li><a href="https://www.schemtech.com" target="_blank">Website</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                &copy; 2025 SiliconFuture Inc. All rights reserved.
+                Copyright © Autonomous Systems & Applications | SecEnAI 2025
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Sliding Content Carousel System
+        document.addEventListener('DOMContentLoaded', function() {
+            const sliders = document.querySelectorAll('.slider-container');
+            let autoTimers = [];
+
+            function initializeSlider(slider) {
+                const container = slider;
+                const slides = container.querySelectorAll('.slider-content');
+                const dots = container.closest('.content-slider').querySelectorAll('.slider-dot');
+                const prevBtn = container.closest('.content-slider').querySelector('.prev-btn');
+                const nextBtn = container.closest('.content-slider').querySelector('.next-btn');
+                
+                let currentSlide = 0;
+                const totalSlides = slides.length;
+                let autoSlideTimer;
+
+                function showSlide(index) {
+                    // Exit current slide
+                    slides[currentSlide].classList.remove('active');
+                    slides[currentSlide].classList.add('exit');
+                    
+                    // Reset exit class after animation
+                    setTimeout(() => {
+                        slides[currentSlide].classList.remove('exit');
+                    }, 800);
+                    
+                    // Update current slide
+                    currentSlide = index;
+                    
+                    // Show new slide
+                    setTimeout(() => {
+                        slides[currentSlide].classList.add('active');
+                    }, 50);
+                    
+                    // Update dots
+                    dots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === currentSlide);
+                    });
+                    
+                    // Reset auto-slide timer
+                    resetAutoSlide();
+                }
+
+                function nextSlide() {
+                    const nextIndex = (currentSlide + 1) % totalSlides;
+                    showSlide(nextIndex);
+                }
+
+                function prevSlide() {
+                    const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+                    showSlide(prevIndex);
+                }
+
+                function goToSlide(index) {
+                    if (index >= 0 && index < totalSlides) {
+                        showSlide(index);
+                    }
+                }
+
+                function resetAutoSlide() {
+                    clearTimeout(autoSlideTimer);
+                    autoSlideTimer = setTimeout(() => {
+                        nextSlide();
+                    }, 8000); // Auto-slide every 8 seconds
+                }
+
+                // Event Listeners
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', () => {
+                        prevSlide();
+                        resetAutoSlide();
+                    });
+                }
+
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', () => {
+                        nextSlide();
+                        resetAutoSlide();
+                    });
+                }
+
+                dots.forEach(dot => {
+                    dot.addEventListener('click', () => {
+                        const index = parseInt(dot.getAttribute('data-index'));
+                        goToSlide(index);
+                        resetAutoSlide();
+                    });
+                });
+
+                // Initialize
+                showSlide(0);
+                resetAutoSlide();
+                
+                // Store timer for cleanup
+                autoTimers.push(autoSlideTimer);
+            }
+
+            // Initialize all sliders
+            sliders.forEach(initializeSlider);
+
+            // Cleanup on page unload
+            window.addEventListener('beforeunload', () => {
+                autoTimers.forEach(timer => clearTimeout(timer));
+            });
+        });
+
+        // Backward Navigation Animation - REDIRECTS TO hero.html
+        document.addEventListener('DOMContentLoaded', function () {
+            let isAnimating = false;
+            let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Create circle element
+            const circle = document.createElement('div');
+            circle.id = 'backCircle';
+            circle.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                width: 200vw;
+                height: 200vw;
+                background: #0a1929 !important;
+                border-radius: 50%;
+                transform: translate(-50%, -50%) scale(1);
+                z-index: 9999999;
+                pointer-events: none;
+                opacity: 0;
+                transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+                display: none;
+            `;
+
+            document.body.insertBefore(circle, document.body.firstChild);
+
+            function triggerBackAnimation() {
+                if (isAnimating) return;
+                isAnimating = true;
+
+                document.body.style.overflow = 'hidden';
+                document.documentElement.style.overflow = 'hidden';
+
+                // Fade out all content except the circle
+                const allElements = document.querySelectorAll('body > *:not(#backCircle)');
+                allElements.forEach(el => {
+                    el.style.transition = 'opacity 0.2s ease';
+                    el.style.opacity = '0';
+                });
+
+                // Show and animate the circle
+                circle.style.display = 'block';
+                circle.style.opacity = '1';
+
+                setTimeout(() => {
+                    circle.style.transform = 'translate(-50%, -50%) scale(0.01)';
+                    
+                    // Redirect to hero.html after animation
+                    setTimeout(() => {
+                        window.location.href = 'hero.html';
+                    }, 800);
+                }, 50);
+            }
+
+            function handleScroll() {
+                if (isAnimating) return;
+                
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Trigger when user scrolls to the top of the page
+                if (currentScroll <= 5 && currentScroll < lastScrollTop) {
+                    triggerBackAnimation();
+                }
+                
+                lastScrollTop = currentScroll;
+            }
+
+            function handleWheel(e) {
+                if (isAnimating) {
+                    e.preventDefault();
+                    return;
+                }
+                
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Trigger when user scrolls up at the top of the page
+                if (currentScroll <= 5 && e.deltaY < 0) {
+                    e.preventDefault();
+                    triggerBackAnimation();
+                    return false;
+                }
+            }
+
+            // Add event listeners
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            window.addEventListener('wheel', handleWheel, { passive: false });
+
+            // Also trigger on swipe up gestures for mobile
+            let touchStartY = 0;
+            let touchStartTime = 0;
+
+            document.addEventListener('touchstart', function(e) {
+                touchStartY = e.touches[0].clientY;
+                touchStartTime = Date.now();
+            }, { passive: true });
+
+            document.addEventListener('touchend', function(e) {
+                if (isAnimating) return;
+                
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                const touchEndY = e.changedTouches[0].clientY;
+                const touchEndTime = Date.now();
+                const touchDiff = touchStartY - touchEndY;
+                const timeDiff = touchEndTime - touchStartTime;
+                
+                // Fast swipe up detection at top of page
+                if (currentScroll <= 5 && touchDiff < -50 && timeDiff < 200) {
+                    triggerBackAnimation();
+                }
+            }, { passive: true });
+        });
+    </script>
 </body>
 
 </html>
