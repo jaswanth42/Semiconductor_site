@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome | SecEnAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Hero Page Styles */
+        :root {
+            --color-primary: #0052cc;
+            --color-primary-light: #4dabf7;
+            --color-white: #ffffff;
+            --color-dark-bg: #0a1929;
+            --color-card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: var(--color-dark-bg);
+            color: var(--color-white);
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Transition Circle */
+        .transition-circle {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--color-white);
+            z-index: 10000;
+            pointer-events: none;
+            transform: translate(-50%, -50%) scale(0);
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .transition-circle.expanding {
+            width: 200vmax;
+            height: 200vmax;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Main Container */
+        .hero-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+            transition: opacity 0.8s ease;
+        }
+
+        .hero-container.fading {
+            opacity: 0;
+        }
+
+        /* Logo */
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .logo span {
+            color: var(--color-primary-light);
+        }
+
+        /* Tagline */
+        .tagline {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin: 0 auto 60px;
+            line-height: 1.6;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        /* Navigation Cards */
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto 40px;
+        }
+
+        .nav-card {
+            background: var(--color-card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-card:hover {
+            border-color: rgba(77, 171, 247, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 82, 204, 0.2);
+        }
+
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .nav-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--color-primary-light);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-white);
+            margin-bottom: 15px;
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        /* Scroll Hint */
+        .scroll-hint {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            animation: pulse 2s infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .scroll-hint i {
+            font-size: 1.2rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-cards {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                max-width: 500px;
+            }
+
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+                margin-bottom: 40px;
+            }
+
+            .nav-card {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+                margin-bottom: 30px;
+            }
+
+            .nav-card {
+                padding: 20px;
+            }
+
+            .card-icon {
+                font-size: 2rem;
+            }
+
+            .card-title {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Transition Circle -->
+    <div class="transition-circle" id="transitionCircle"></div>
+
+    <!-- Hero Content -->
+    <div class="hero-container" id="heroContent">
+        <!-- Logo -->
+        <div class="logo">SecEn<span>AI</span></div>
+
+        <!-- Tagline -->
+        <p class="tagline">
+            Powering AI with Next-Gen Semiconductors. Secure, trustworthy AI solutions from edge to cloud.
+        </p>
+
+        <!-- Navigation Cards -->
+        <div class="nav-cards">
+            <!-- Home Card -->
+            <div class="nav-card" data-target="index.html">
+                <div class="card-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="card-title">Home</div>
+                <p class="card-description">
+                    Explore our AI semiconductor solutions, cutting-edge research, and transformative technologies.
+                </p>
+            </div>
+
+            <!-- Services Card -->
+            <div class="nav-card" data-target="services.html">
+                <div class="card-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <div class="card-title">Services</div>
+                <p class="card-description">
+                    AI chip design, edge computing, automated inspection systems, and trustworthy AI hardware solutions.
+                </p>
+            </div>
+
+            <!-- Careers Card -->
+            <div class="nav-card" data-target="careers.html">
+                <div class="card-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="card-title">Careers</div>
+                <p class="card-description">
+                    Join our team of engineers, researchers, and innovators shaping the future of AI semiconductors.
+                </p>
+            </div>
+
+            <!-- Contact Card -->
+            <div class="nav-card" data-target="contact.html">
+                <div class="card-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="card-title">Contact</div>
+                <p class="card-description">
+                    Get in touch with our team for collaborations, partnerships, and technical inquiries.
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            © 2025 SecEnAI | Powering AI with Next-Gen Semiconductors
+        </div>
+
+        <!-- Scroll Hint -->
+        <div class="scroll-hint">
+            <span>SELECT A SECTION</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </div>
+
+    <script>
+        // Hero Page Navigation System
+        document.addEventListener('DOMContentLoaded', function () {
+            const transitionCircle = document.getElementById('transitionCircle');
+            const heroContent = document.getElementById('heroContent');
+            const navCards = document.querySelectorAll('.nav-card');
+            let isTransitioning = false;
+            let autoTimer;
+
+            // Function to trigger transition
+            function triggerTransition(targetPage) {
+                if (isTransitioning) return;
+                isTransitioning = true;
+
+                // Prevent scrolling
+                document.body.style.overflow = 'hidden';
+
+                // Fade out content
+                heroContent.classList.add('fading');
+
+                // Show and expand circle
+                setTimeout(() => {
+                    transitionCircle.classList.add('expanding');
+
+                    // Navigate after animation
+                    setTimeout(() => {
+                        window.location.href = targetPage;
+                    }, 800);
+                }, 300);
+            }
+
+            // Auto-start transition to Home page after 8 seconds if no interaction
+            function startAutoTransition() {
+                autoTimer = setTimeout(() => {
+                    if (!isTransitioning) {
+                        triggerTransition('index.html');
+                    }
+                }, 8000);
+            }
+
+            // Reset auto-transition timer on user interaction
+            function resetAutoTimer() {
+                clearTimeout(autoTimer);
+                startAutoTransition();
+            }
+
+            // Add click events to navigation cards
+            navCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const targetPage = this.getAttribute('data-target');
+                    triggerTransition(targetPage);
+                });
+            });
+
+            // Scroll detection
+            window.addEventListener('wheel', function (e) {
+                resetAutoTimer();
+
+                if (isTransitioning) return;
+
+                // Scroll down - go to Home page
+                if (e.deltaY > 0) {
+                    triggerTransition('index.html');
+                }
+            }, { passive: false });
+
+            // Touch detection
+            let touchStartY = 0;
+            window.addEventListener('touchstart', function (e) {
+                touchStartY = e.touches[0].clientY;
+                resetAutoTimer();
+            }, { passive: true });
+
+            window.addEventListener('touchend', function (e) {
+                if (isTransitioning) return;
+
+                const touchEndY = e.changedTouches[0].clientY;
+                const diff = touchStartY - touchEndY;
+
+                // Swipe down detection
+                if (diff > 50) {
+                    triggerTransition('index.html');
+                }
+            }, { passive: true });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function (e) {
+                resetAutoTimer();
+
+                if (isTransitioning) return;
+
+                switch(e.key) {
+                    case '1':
+                    case 'h':
+                    case 'H':
+                        triggerTransition('index.html');
+                        break;
+                    case '2':
+                    case 's':
+                    case 'S':
+                        triggerTransition('services.html');
+                        break;
+                    case '3':
+                    case 'c':
+                    case 'C':
+                        triggerTransition('careers.html');
+                        break;
+                    case '4':
+                    case 't':
+                    case 'T':
+                        triggerTransition('contact.html');
+                        break;
+                    case 'ArrowDown':
+                    case ' ':
+                    case 'Enter':
+                        triggerTransition('index.html');
+                        break;
+                }
+            });
+
+            // Track mouse movement for auto-transition reset
+            document.addEventListener('mousemove', resetAutoTimer);
+
+            // Initialize auto-transition
+            startAutoTransition();
+        });
+    </script>
+</body>
+
+</html>
