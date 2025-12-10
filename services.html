@@ -567,64 +567,7 @@
                 </div>
             </section>
 
-            <!-- Section 3: Environment and Sustainability -->
-            <!-- <section class="service-section" id="service-2">
-                <div class="section-content">
-                    <div class="text-content">
-                        <h2>Environment and Sustainability</h2>
-                        
-                        <h3>Air Quality Monitoring</h3>
-                        <p>Drone-integrated sensors and smart street lights create distributed networks for real-time environmental data collection.</p>
-                        
-                        <h3>Smart Waste Management</h3>
-                        <p>Drones monitor garbage levels, detect illegal dumping, and transport waste from hard-to-access areas.</p>
-                    </div>
-                    <div class="image-content">
-                        <img src="https://images.unsplash.com/photo-1589652717521-10c0d092dea9?auto=format&fit=crop&w=1200&q=80"
-                            alt="Environment Monitoring">
-                    </div>
-                </div>
-            </section> -->
-
-            <!-- Section 4: Smart Systems for Infrastructure -->
-            <!-- <section class="service-section" id="service-3">
-                <div class="section-content">
-                    <div class="image-content">
-                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80"
-                            alt="Infrastructure Inspection">
-                    </div>
-                    <div class="text-content">
-                        <h2>Infrastructure Inspection & Maintenance</h2>
-                        
-                        <h3>Power Grid Inspection</h3>
-                        <p>Drones access remote/hazardous areas to capture detailed images of power lines and infrastructure.</p>
-                        
-                        <h3>Structural Damage Detection</h3>
-                        <p>AI analyzes drone-captured images to identify cracks, deformations, and surface irregularities in structures.</p>
-                    </div>
-                </div>
-            </section> -->
-
-            <!-- Section 5: Automated Inspection Systems -->
-            <!-- <section class="service-section" id="service-4">
-                <div class="section-content">
-                    <div class="text-content">
-                        <h2>Automated PCB & Wafer Inspection</h2>
-                        
-                        <h3>PCB Defects Detection</h3>
-                        <p>Lightweight DL models for real-time PCB inspection to ensure reliability and safety of electronic systems.</p>
-                        
-                        <h3>Wafer Defects Detection</h3>
-                        <p>Machine vision and DL techniques for semiconductor defect detection, improving yield and reducing costs.</p>
-                    </div>
-                    <div class="image-content">
-                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80"
-                            alt="PCB and Wafer Inspection">
-                    </div>
-                </div>
-            </section> -->
-
-            <!-- Section 6: AI Chips and Hardware -->
+            <!-- Section 3: AI Chips and Hardware -->
             <section class="service-section" id="service-5">
                 <div class="section-content">
                     <div class="image-content">
@@ -642,27 +585,6 @@
                     </div>
                 </div>
             </section>
-
-            <!-- Section 7: Trustworthy AI Hardware -->
-            <!-- <section class="service-section" id="service-6">
-                <div class="section-content">
-                    <div class="text-content">
-                        <h2>Trustworthy & Explainable AI Hardware</h2>
-                        
-                        <h3>Explainable AI</h3>
-                        <p>Transparent AI systems with clear reasoning behind decisions, critical for healthcare and finance applications.</p>
-                        
-                        <h3>Trustworthy AI</h3>
-                        <p>Reliable, safe, and ethically aligned AI systems that behave predictably and responsibly.</p>
-                        
-                        <p><a href="https://www.secenssemiconductors.com/solutions/index.html" target="_blank">Learn more about our solutions</a></p>
-                    </div>
-                    <div class="image-content">
-                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80"
-                            alt="Trustworthy AI">
-                    </div>
-                </div>
-            </section> -->
         </div>
 
         <!-- Footer Section - ALWAYS FIXED AT BOTTOM -->
@@ -677,14 +599,11 @@
     <script>
         // Fast Service Sections Scrolling System
         document.addEventListener('DOMContentLoaded', function() {
+            // Get ONLY the existing service sections (not commented ones)
             const serviceSections = [
                 document.getElementById('service-0'), // Quality Control in Agriculture/Food
                 document.getElementById('service-1'), // Drones in Agriculture
-                // document.getElementById('service-2'), // Environment and Sustainability
-                // document.getElementById('service-3'), // Smart Systems for Infrastructure
-                // document.getElementById('service-4'), // Automated Inspection Systems
-                // document.getElementById('service-5'), // AI Chips and Hardware
-                document.getElementById('service-6')  // Trustworthy AI Hardware (LAST)
+                document.getElementById('service-5')  // AI Chips and Hardware
             ];
             
             const scrollIndicator = document.getElementById('scrollIndicator');
@@ -693,7 +612,7 @@
             const dynamicHeader = document.getElementById('dynamicHeader');
             const dynamicSubheader = document.getElementById('dynamicSubheader');
             
-            // Section-specific header texts
+            // Section-specific header texts - ONLY for existing sections
             const headerTexts = [
                 {
                     title: "AI in Agriculture & Food Quality",
@@ -703,26 +622,10 @@
                     title: "Edge AI in Agriculture",
                     subtitle: "AI-powered drones for crop monitoring, disease detection, and precision agriculture."
                 },
-                // {
-                //     title: "Environmental AI Solutions",
-                //     subtitle: "Smart monitoring systems for air quality, waste management, and sustainable environments."
-                // },
-                // {
-                //     title: "Infrastructure Inspection AI",
-                //     subtitle: "AI-driven drone systems for power grid inspection and structural damage detection."
-                // },
-                // {
-                //     title: "Automated Manufacturing Inspection",
-                //     subtitle: "AI vision systems for PCB and semiconductor wafer defect detection."
-                // },
                 {
                     title: "AI Chip Design & Hardware",
                     subtitle: "Precision scalable AI accelerators and computing-in-memory architectures."
-                },
-                // {
-                //     title: "Trustworthy & Explainable AI",
-                //     subtitle: "Ethical, transparent, and reliable AI hardware solutions for critical applications."
-                // }
+                }
             ];
             
             let currentSection = 0;
@@ -730,7 +633,10 @@
             let lastScrollTime = 0;
             const scrollCooldown = 100;
 
-            // Create indicator dots dynamically
+            // Clear existing dots
+            scrollIndicator.innerHTML = '';
+            
+            // Create indicator dots dynamically based on ACTUAL number of sections
             serviceSections.forEach((_, index) => {
                 const dot = document.createElement('div');
                 dot.className = 'indicator-dot';
@@ -873,7 +779,9 @@
             function updateActiveSection(index, isForward = true) {
                 // Remove all classes from all service sections
                 serviceSections.forEach(section => {
-                    section.classList.remove('active', 'prev');
+                    if (section) {
+                        section.classList.remove('active', 'prev');
+                    }
                 });
                 
                 // Add active class to current service section
@@ -948,5 +856,3 @@
 </body>
 
 </html>
-
-
