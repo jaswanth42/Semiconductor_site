@@ -7,6 +7,29 @@
     <title>About | SecEnAI</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Add some styles for missing images */
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
 </head>
 
 <body>
@@ -53,71 +76,59 @@
         <div class="container">
             <h2 class="animate-on-scroll" style="text-align: center; margin-bottom: 40px;">Leadership</h2>
             <div class="grid-3">
+                <!-- Dr. Ramesh Vaddi -->
                 <div class="card animate-on-scroll delay-100" style="text-align: center;">
-                    <div
-                        style="width: 100px; height: 100px; background: #ddd; border-radius: 50%; margin: 0 auto 20px; overflow: hidden;">
-                        <img src="assets/about_page/Ramesh_vaddi.jpeg" alt="Dr. Ramesh Vaddi" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="profile-image" id="rameshImage">
+                        <img src="assets/about_page/Ramesh_vaddi.jpeg" alt="Dr. Ramesh Vaddi" 
+                             onerror="this.style.display='none'; document.getElementById('rameshInitials').style.display='flex';">
+                        <div id="rameshInitials" style="display: none; font-size: 1.8rem;">RV</div>
                     </div>
                     <h3>Dr. Ramesh Vaddi</h3>
                     <p>Founder</p>
                 </div>
+                
+                <!-- Prof. Siva Shankar Y -->
                 <div class="card animate-on-scroll delay-100" style="text-align: center;">
-                    <div
-                        style="width: 100px; height: 100px; background: #ddd; border-radius: 50%; margin: 0 auto 20px; overflow: hidden;">
-                        <img src="assets/about_page/sivasankar.jpg" alt="Prof. Siva Shankar Y" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="profile-image" id="sivaImage">
+                        <img src="assets/about_page/sivasankar.jpg" alt="Prof. Siva Shankar Y" 
+                             onerror="this.style.display='none'; document.getElementById('sivaInitials').style.display='flex';">
+                        <div id="sivaInitials" style="display: none; font-size: 1.8rem;">SS</div>
                     </div>
                     <h3>Prof. Siva Shankar Y</h3>
                     <p>CEO & Founder</p>
                 </div>
-                <div class="card animate-on-scroll delay-200" style="text-align: center;">
-                    <div
-                        style="width: 100px; height: 100px; background: #ddd; border-radius: 50%; margin: 0 auto 20px; overflow: hidden;">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <h3>Sarah Johnson</h3>
-                    <p>Chief Technology Officer</p>
-                </div>
-                <div class="card animate-on-scroll delay-300" style="text-align: center;">
-                    <div
-                        style="width: 100px; height: 100px; background: #ddd; border-radius: 50%; margin: 0 auto 20px; overflow: hidden;">
-                        <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Michael Ross" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <h3>Michael Ross</h3>
-                    <p>VP of Operations</p>
-                </div>
                 
-                <!-- New Leadership Team Members -->
-                <div class="card animate-on-scroll delay-100" style="text-align: center;">
-                    <div
-                        style="width: 100px; height: 100px; background: #667eea; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
-                        VB
+                <!-- Dr. Vimal Babu -->
+                <div class="card animate-on-scroll delay-200" style="text-align: center;">
+                    <div class="profile-image">
+                        <div style="font-size: 1.8rem;">VB</div>
                     </div>
                     <h3>Dr. Vimal Babu</h3>
                     <p>Director</p>
                 </div>
                 
-                <div class="card animate-on-scroll delay-200" style="text-align: center;">
-                    <div
-                        style="width: 100px; height: 100px; background: #764ba2; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
-                        ALR
+                <!-- Dr. A Lakshmana Rao -->
+                <div class="card animate-on-scroll delay-300" style="text-align: center;">
+                    <div class="profile-image">
+                        <div style="font-size: 1.8rem;">ALR</div>
                     </div>
                     <h3>Dr. A Lakshmana Rao</h3>
                     <p>Co-Director</p>
                 </div>
                 
-                <div class="card animate-on-scroll delay-300" style="text-align: center;">
-                    <div
-                        style="width: 100px; height: 100px; background: #f093fb; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
-                        JA
+                <!-- Dr. Japa Aditya -->
+                <div class="card animate-on-scroll delay-400" style="text-align: center;">
+                    <div class="profile-image">
+                        <div style="font-size: 1.8rem;">JA</div>
                     </div>
                     <h3>Dr. Japa Aditya</h3>
                     <p>Co-Director</p>
                 </div>
                 
-                <div class="card animate-on-scroll delay-400" style="text-align: center;">
-                    <div
-                        style="width: 100px; height: 100px; background: #4facfe; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
-                        AVK
+                <!-- Mr. A Vinod Kumar -->
+                <div class="card animate-on-scroll delay-500" style="text-align: center;">
+                    <div class="profile-image">
+                        <div style="font-size: 1.8rem;">AVK</div>
                     </div>
                     <h3>Mr. A Vinod Kumar</h3>
                     <p>Advisor</p>
