@@ -1,61 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Careers | SecEnAI</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Remove the old admin link floating button */
+        .admin-link-floating {
+            display: none !important;
+        }
+        
+        /* Adjust header padding for fixed navbar */
+        header.section {
+            padding-top: 140px !important;
+            padding-bottom: 60px !important;
+        }
+    </style>
 </head>
 
 <body>
-
     <nav class="navbar">
         <div class="container nav-container">
+            <!-- Logo - Left side -->
             <a href="index.html" class="logo">SecEnAI</a>
-            <div class="nav-links">
+            
+            <!-- Navigation Links - Center -->
+            <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
                 <a href="services.html">Services</a>
                 <a href="careers.html" class="active">Careers</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
+                <a href="admin-login.html" class="admin-link">Admin</a>
             </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <!-- Get in Touch Button - Right side -->
             <a href="contact.html" class="btn btn-primary">Get in Touch</a>
         </div>
     </nav>
 
-    <header class="section bg-light" style="padding-top: 120px; padding-bottom: 60px;">
+    <header class="section bg-light" style="padding-top: 140px; padding-bottom: 60px;">
         <div class="container animate-on-scroll">
             <h1>Join Our Team</h1>
             <p style="max-width: 600px;">Build the future with us. We are looking for passionate engineers and
-                innovators.</p>
+                innovators to join our growing team.</p>
         </div>
     </header>
 
     <section class="section">
         <div class="container">
             <h2 class="animate-on-scroll">Open Positions</h2>
-            <div class="grid-3" style="margin-top: 40px;">
-                <div class="card animate-on-scroll delay-100">
-                    <h3>Senior Analog Design Engineer</h3>
-                    <p>San Jose, CA</p>
-                    <p style="font-size: 0.9rem;">5+ years experience in high-speed SerDes design.</p>
-                    <a href="#" class="btn btn-outline" style="margin-top: 10px;">Apply Now</a>
-                </div>
-                <div class="card animate-on-scroll delay-200">
-                    <h3>Verification Engineer</h3>
-                    <p>Austin, TX</p>
-                    <p style="font-size: 0.9rem;">Experience with UVM and SystemVerilog required.</p>
-                    <a href="#" class="btn btn-outline" style="margin-top: 10px;">Apply Now</a>
-                </div>
-                <div class="card animate-on-scroll delay-300">
-                    <h3>Embedded Software Developer</h3>
-                    <p>Remote / Hybrid</p>
-                    <p style="font-size: 0.9rem;">Strong C/C++ skills for firmware development.</p>
-                    <a href="#" class="btn btn-outline" style="margin-top: 10px;">Apply Now</a>
-                </div>
+            <p class="animate-on-scroll" style="margin-bottom: 30px;">Browse our current openings and apply today.</p>
+
+            <div id="jobsContainer" class="grid-3" style="margin-top: 40px;">
+                <!-- Jobs will be loaded here dynamically -->
             </div>
+
+            <p id="noJobsMessage" style="text-align: center; display: none;" class="animate-on-scroll">
+                Currently, there are no open positions. Please check back later!
+            </p>
         </div>
     </section>
 
@@ -65,15 +76,15 @@
             <div class="grid-3" style="margin-top: 40px;">
                 <div>
                     <h3>Innovation First</h3>
-                    <p>Work on cutting-edge nodes and technologies that define the industry.</p>
+                    <p>Work on cutting-edge AI and semiconductor technologies that define the industry.</p>
                 </div>
                 <div>
                     <h3>Great Benefits</h3>
-                    <p>Comprehensive health, dental, and vision plans, plus 401k matching.</p>
+                    <p>Comprehensive health, dental, and vision plans, plus 401k matching and stock options.</p>
                 </div>
                 <div>
                     <h3>Growth</h3>
-                    <p>Continuous learning opportunities and tuition reimbursement.</p>
+                    <p>Continuous learning opportunities, conference budgets, and tuition reimbursement.</p>
                 </div>
             </div>
         </div>
@@ -82,14 +93,13 @@
     <footer>
         <div class="container">
             <div class="copyright">
-                &copy; 2025 SiliconFuture Inc. All rights reserved.
+                <p>&copy; 2025 SecEnAI Inc. All rights reserved.</p>
+                <p>Innovating for a smarter tomorrow.</p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <!-- REMOVED the duplicate script - script.js already handles this -->
 </body>
-
-
 </html>
-
