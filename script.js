@@ -409,25 +409,23 @@ function logout() {
     localStorage.removeItem('adminLoggedIn');
     window.location.href = 'admin-login.html';
 }
+<script>
 document.getElementById("contactForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
   const formData = new FormData(this);
-  const data = Object.fromEntries(formData.entries());
 
   fetch("https://script.google.com/macros/s/AKfycbyBe--EQrmJnPIR_YRjWQziFldxf5KuCDlo76w_nXR-yw0NGm_rd6spLRp2YJhmI9QwpA/exec", {
     method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json"
-    }
+    body: formData
   })
-  .then(res => res.json())
-  .then(response => {
+  .then(() => {
     alert("Message sent successfully!");
     this.reset();
   })
-  .catch(err => alert("Error submitting form"));
+  .catch(() => alert("Error submitting form"));
 });
+</script>
+
 
 
