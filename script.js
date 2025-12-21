@@ -409,7 +409,6 @@ function logout() {
     localStorage.removeItem('adminLoggedIn');
     window.location.href = 'admin-login.html';
 }
-<script>
 document.getElementById("contactForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
@@ -425,7 +424,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
   })
   .catch(() => alert("Error submitting form"));
 });
-</script>
+
 
 
 
