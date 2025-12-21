@@ -415,7 +415,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
 
   const formData = new FormData(this);
 
-  fetch("https://script.google.com/macros/s/AKfycbyBe--EQrmJnPIR_YRjWQziFldxf5KuCDlo76w_nXR-yw0NGm_rd6spLRp2YJhmI9QwpA/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbwsKHXbGfAPLM7_33VGrfmhVC17vOEPpXbO2TXfkXLKTgdQSuqQZKXowxwUWTZoPGlTWQ/exec", {
     method: "POST",
     body: formData
   })
@@ -426,6 +426,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
   .catch(() => alert("Error submitting form"));
 });
 </script>
+
 
 
 
