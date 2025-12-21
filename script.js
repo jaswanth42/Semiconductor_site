@@ -415,7 +415,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
   const formData = new FormData(this);
   const data = Object.fromEntries(formData.entries());
 
-  fetch("YOUR_WEB_APP_URL", {
+  fetch("https://script.google.com/macros/s/AKfycbyBe--EQrmJnPIR_YRjWQziFldxf5KuCDlo76w_nXR-yw0NGm_rd6spLRp2YJhmI9QwpA/exec", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -429,4 +429,5 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
   })
   .catch(err => alert("Error submitting form"));
 });
+
 
