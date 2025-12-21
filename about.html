@@ -25,7 +25,7 @@
             font-weight: bold;
             font-size: 1.5rem;
         }
-        
+
         .profile-image img {
             width: 100%;
             height: 100%;
@@ -39,13 +39,20 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">SecEnAI</a>
-            <div class="nav-links">
+
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
                 <a href="services.html">Services</a>
                 <a href="careers.html">Careers</a>
                 <a href="about.html" class="active">About</a>
                 <a href="contact.html">Contact</a>
+                <a href="admin-login.html" class="admin-link">Admin</a>
             </div>
+
             <a href="contact.html" class="btn btn-primary">Get in Touch</a>
         </div>
     </nav>
@@ -53,7 +60,8 @@
     <header class="section bg-light" style="padding-top: 120px; padding-bottom: 60px;">
         <div class="container animate-on-scroll">
             <h1>About Us</h1>
-            <p style="max-width: 600px;">We are engineers, researchers, problem-solvers, and AI-based system enablers. Join us in shaping the 
+            <p style="max-width: 600px;">We are engineers, researchers, problem-solvers, and AI-based system enablers.
+                Join us in shaping the
                 future of AI-driven semiconductors towards Secure, Trustworthy Edge computing-based applications.</p>
         </div>
     </header>
@@ -68,8 +76,7 @@
                     everywhere.</p>
             </div>
             <div>
-                <img src="asserts\about_page\achi_2.JPG"
-                    alt="Team working" style="border-radius: 16px;">
+                <img src="asserts\about_page\achi_2.JPG" alt="Team working" style="border-radius: 16px;">
             </div>
         </div>
     </section>
@@ -80,77 +87,128 @@
             <div class="grid-3">
                 <!-- Dr. Ramesh Vaddi -->
                 <div class="card animate-on-scroll delay-100" style="text-align: center;">
-                    <div class="profile-image" id="rameshImage">
-                        <img src="assets/about_page/Ramesh_vaddi.jpeg" alt="Dr. Ramesh Vaddi" 
-                             onerror="this.style.display='none'; document.getElementById('rameshInitials').style.display='flex';">
-                        <div id="rameshInitials" style="display: none; font-size: 1.8rem;">RV</div>
+                    <div class="profile-image">
+                        <img src="asserts/about_page/Ramesh_vaddi.jpeg" alt="Dr. Ramesh Vaddi"
+                            onerror="this.style.display='none'; this.parentElement.innerHTML='<div>RV</div>';">
                     </div>
                     <h3>Dr. Ramesh Vaddi</h3>
                     <p>Founder</p>
-                    <a href="https://www.linkedin.com/in" target="_blank" class="linkedin-icon" title="LinkedIn Profile">
+                    <a href="https://www.linkedin.com/in/dr-ramesh-vaddi-b0052620/" target="_blank" class="linkedin-icon"
+                        title="LinkedIn Profile">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
-                
+
                 <!-- Prof. Siva Shankar Y -->
                 <div class="card animate-on-scroll delay-100" style="text-align: center;">
-                    <div class="profile-image" id="sivaImage">
-                        <img src="assets/about_page/sivasankar.jpg" alt="Prof. Siva Shankar Y" 
-                             onerror="this.style.display='none'; document.getElementById('sivaInitials').style.display='flex';">
-                        <div id="sivaInitials" style="display: none; font-size: 1.8rem;">SS</div>
+                    <div class="profile-image">
+                        <img src="asserts/about_page/sivasankar.jpg" alt="Prof. Siva Shankar Y"
+                            onerror="this.style.display='none'; this.parentElement.innerHTML='<div>SS</div>';">
                     </div>
                     <h3>Prof. Siva Shankar Y</h3>
                     <p>CEO & Founder</p>
-                    <a href="https://www.linkedin.com/in" target="_blank" class="linkedin-icon" title="LinkedIn Profile">
+                    <a href="https://www.linkedin.com/in" target="_blank" class="linkedin-icon"
+                        title="LinkedIn Profile">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
-                
+
                 <!-- Dr. Vimal Babu -->
                 <div class="card animate-on-scroll delay-200" style="text-align: center;">
                     <div class="profile-image">
-                        <div style="font-size: 1.8rem;">VB</div>
+                        <img src="asserts/about_page/vimal.jpeg" alt="Dr. Vimal Babu"
+                            onerror="this.style.display='none'; this.parentElement.innerHTML='<div>VB</div>';">
                     </div>
                     <h3>Dr. Vimal Babu</h3>
                     <p>Director</p>
-                    <!-- Example with actual LinkedIn URL -->
-                    <a href="https://www.linkedin.com/in" target="_blank" class="linkedin-icon" title="LinkedIn Profile">
+                    <a href="https://www.linkedin.com/in/drvimalbabu/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="linkedin-icon"
+                        title="LinkedIn Profile">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
-                
+
                 <!-- Dr. A Lakshmana Rao -->
                 <div class="card animate-on-scroll delay-300" style="text-align: center;">
                     <div class="profile-image">
-                        <div style="font-size: 1.8rem;">ALR</div>
+                        <img src="asserts/about_page/lakshmanrao.jpeg" alt="Dr. A Lakshmana Rao"
+                            onerror="this.style.display='none'; this.parentElement.innerHTML='<div>ALR</div>';">
                     </div>
                     <h3>Dr. A Lakshmana Rao</h3>
                     <p>Co-Director</p>
-                    <a href="https://www.linkedin.com/in" target="_blank" class="linkedin-icon" title="LinkedIn Profile">
+                    <a href="https://www.linkedin.com/in" target="_blank" class="linkedin-icon"
+                        title="LinkedIn Profile">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
-                
+
                 <!-- Dr. Japa Aditya -->
                 <div class="card animate-on-scroll delay-400" style="text-align: center;">
                     <div class="profile-image">
-                        <div style="font-size: 1.8rem;">JA</div>
+                        <img src="asserts/about_page/adithya.jpeg" alt="Dr. Japa Aditya"
+                            onerror="this.style.display='none'; this.parentElement.innerHTML='<div>JA</div>';">
                     </div>
                     <h3>Dr. Japa Aditya</h3>
                     <p>Co-Director</p>
-                    <a href="https://www.linkedin.com/in" target="_blank" class="linkedin-icon" title="LinkedIn Profile">
+                    <a href="https://www.linkedin.com/in" target="_blank" class="linkedin-icon"
+                        title="LinkedIn Profile">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
-                
+
                 <!-- Mr. A Vinod Kumar -->
                 <div class="card animate-on-scroll delay-500" style="text-align: center;">
                     <div class="profile-image">
-                        <div style="font-size: 1.8rem;">AVK</div>
+                        <img src="asserts/about_page/vinod.jpeg" alt="Mr. A Vinod Kumar"
+                            onerror="this.style.display='none'; this.parentElement.innerHTML='<div>AVK</div>';">
                     </div>
                     <h3>Mr. A Vinod Kumar</h3>
                     <p>Advisor</p>
-                    <a href="https://www.linkedin.com/in" target="_blank" class="linkedin-icon" title="LinkedIn Profile">
+                    <a href="https://www.linkedin.com/in" target="_blank" class="linkedin-icon"
+                        title="LinkedIn Profile">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+
+                <!-- Dr. Baskar -->
+                <div class="card animate-on-scroll delay-600" style="text-align: center;">
+                    <div class="profile-image">
+                        <img src="asserts/about_page/baskar.jpeg" alt="Dr. Baskar"
+                            onerror="this.style.display='none'; this.parentElement.innerHTML='<div>B</div>';">
+                    </div>
+                    <h3>Dr. Baskar</h3>
+                    <p>Advisor</p>
+                    <a href="https://www.linkedin.com/in" target="_blank" class="linkedin-icon"
+                        title="LinkedIn Profile">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+
+                <!-- Dr. Tirumal Rao -->
+                <div class="card animate-on-scroll delay-700" style="text-align: center;">
+                    <div class="profile-image">
+                        <img src="asserts/about_page/tirumalrao.jpeg" alt="Dr. Tirumal Rao"
+                            onerror="this.style.display='none'; this.parentElement.innerHTML='<div>TR</div>';">
+                    </div>
+                    <h3>Dr. Tirumal Rao</h3>
+                    <p>Technical Advisor</p>
+                    <a href="https://www.linkedin.com/in/tirumala-rao-kadiyam-2ba334153/" target="_blank" class="linkedin-icon"
+                        title="LinkedIn Profile">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+
+                <!-- Pushpak Developer -->
+                <div class="card animate-on-scroll delay-800" style="text-align: center;">
+                    <div class="profile-image">
+                        <div>
+                            <img src="asserts/about_page/pushpak.jpg" alt="Dr. Pushpak Srinivas"
+                            onerror="this.style.display='none'; this.parentElement.innerHTML='<div>TR</div>';">
+                        </div>
+                    </div>
+                    <h3>Pushpak</h3>
+                    <p>Developer</p>
+                    <a href="https://www.linkedin.com/in/pushpak-srinivas-s-923324282/" target="_blank" class="linkedin-icon"
+                        title="LinkedIn Profile">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
@@ -161,7 +219,8 @@
     <footer>
         <div class="container">
             <div class="copyright">
-                &copy; 2025 SecEnAI Inc. All rights reserved.
+                <p>&copy; 2025 SecEnAI Inc. All rights reserved.</p>
+                <p>Innovating for a smarter tomorrow.</p>
             </div>
         </div>
     </footer>
@@ -170,6 +229,3 @@
 </body>
 
 </html>
-
-
-
