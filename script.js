@@ -409,21 +409,45 @@ function logout() {
     localStorage.removeItem('adminLoggedIn');
     window.location.href = 'admin-login.html';
 }
-document.getElementById("contactForm").addEventListener("submit", function(e) {
-  e.preventDefault();
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx0QtZ16dvoJsv5x0j5ZCmmss8kDHWvLsK1cvZpCSyK1qpAcG45ZKVl4TIGC2u6ZVp84w/exec";
 
-  const formData = new FormData(this);
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contactForm");
+  const statusEl = document.getElementById("formStatus");
 
-  fetch("https://script.google.com/macros/s/AKfycbwsKHXbGfAPLM7_33VGrfmhVC17vOEPpXbO2TXfkXLKTgdQSuqQZKXowxwUWTZoPGlTWQ/exec", {
-    method: "POST",
-    body: formData
-  })
-  .then(() => {
-    alert("Message sent successfully!");
-    this.reset();
-  })
-  .catch(() => alert("Error submitting form"));
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const payload = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      message: formData.get("message"),
+    };
+
+    statusEl.textContent = "Sending...";
+
+    try {
+      const res = await fetch(WEB_APP_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload),
+      });
+
+      const out = await res.json();
+
+      if (out.status === "success") {
+        statusEl.textContent = "✅ Message sent successfully!";
+        form.reset();
+      } else {
+        statusEl.textContent = "❌ Error: " + (out.message || "Unknown error");
+      }
+    } catch (err) {
+      statusEl.textContent = "❌ Network error. Please try again.";
+    }
+  });
 });
+
 
 
 
