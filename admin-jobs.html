@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +9,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <nav class="navbar">
         <div class="container nav-container">
             <!-- Logo - Left side -->
             <a href="index.html" class="logo">SecEnAI</a>
-            
+
             <!-- Navigation Links - Center -->
             <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
@@ -23,12 +25,12 @@
                 <a href="contact.html">Contact</a>
                 <a href="admin-jobs.html" class="active admin-link">Admin</a>
             </div>
-            
+
             <!-- Mobile Menu Toggle -->
             <button class="menu-toggle" id="menuToggle">
                 <i class="fas fa-bars"></i>
             </button>
-            
+
             <!-- Logout Button - Right side -->
             <button onclick="logout()" class="btn btn-danger">Logout</button>
         </div>
@@ -37,20 +39,21 @@
     <div class="container admin-panel">
         <h1>Manage Job Postings</h1>
         <p>Add, edit, or remove job listings. Changes will appear on the careers page.</p>
-        
+
         <div class="admin-form">
             <h2>Add New Job</h2>
             <form id="jobForm">
                 <div class="form-group">
                     <label for="jobTitle">Job Title *</label>
-                    <input type="text" id="jobTitle" name="jobTitle" required placeholder="e.g., Senior Analog Design Engineer">
+                    <input type="text" id="jobTitle" name="jobTitle" required
+                        placeholder="e.g., Senior Analog Design Engineer">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="jobLocation">Location *</label>
                     <input type="text" id="jobLocation" name="jobLocation" required placeholder="e.g., San Jose, CA">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="jobType">Job Type</label>
                     <select id="jobType" name="jobType">
@@ -61,31 +64,40 @@
                         <option value="Hybrid">Hybrid</option>
                     </select>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="jobDescription">Description *</label>
-                    <textarea id="jobDescription" name="jobDescription" required placeholder="e.g., 5+ years experience in high-speed SerDes design."></textarea>
+                    <textarea id="jobDescription" name="jobDescription" required
+                        placeholder="e.g., 5+ years experience in high-speed SerDes design."></textarea>
                 </div>
-                
+
+                <div class="form-group">
+                    <label for="applyLink">Apply Link *</label>
+                    <input type="url" id="applyLink" name="applyLink" required
+                        placeholder="e.g., https://forms.google.com/your-application-form">
+                    <small style="color: #888; font-size: 0.85rem;">Paste the URL where candidates will be redirected
+                        when they click "Apply Now"</small>
+                </div>
+
                 <!-- <div class="form-group">
                     <label for="jobRequirements">Requirements (one per line)</label>
                     <textarea id="jobRequirements" name="jobRequirements" placeholder="• Experience with UVM&#10;• SystemVerilog knowledge&#10;• Bachelor's degree in EE"></textarea>
                 </div> -->
-                
+
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Add Job</button>
                     <button type="button" class="btn btn-outline" onclick="clearForm()">Clear Form</button>
                 </div>
             </form>
         </div>
-        
+
         <div class="preview-section">
             <h2>Preview</h2>
             <div id="jobPreview" class="preview-card">
                 <p>Fill the form to see a preview of how the job will appear.</p>
             </div>
         </div>
-        
+
         <div class="current-jobs">
             <h2>Current Job Listings</h2>
             <div id="jobsList" class="jobs-list">
@@ -96,4 +108,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
