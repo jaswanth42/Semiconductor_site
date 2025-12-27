@@ -9,336 +9,337 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-    /* HOME PAGE SLIDER - UNIQUE CLASS NAMES */
-    
-    /* Sliding Content Sections - ADJUSTED PADDING */
-    .home-sliding-section {
-        position: relative;
-        overflow: hidden;
-        padding: 80px 0;
-        background: white;
-    }
+        /* HOME PAGE SLIDER - UNIQUE CLASS NAMES */
 
-    .home-sliding-section:nth-child(even) {
-        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-    }
-
-    .home-content-slider {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-        position: relative;
-    }
-
-    .home-slider-container {
-        position: relative;
-        height: auto;
-        min-height: 500px;
-        overflow: visible;
-    }
-
-    .home-slider-content {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        transform: translateX(100px);
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 60px;
-        pointer-events: none;
-        visibility: hidden;
-    }
-
-    .home-slider-content.active {
-        opacity: 1;
-        transform: translateX(0);
-        pointer-events: all;
-        visibility: visible;
-        position: relative;
-    }
-
-    .home-slider-content.exit {
-        opacity: 0;
-        transform: translateX(-100px);
-        pointer-events: none;
-        visibility: hidden;
-    }
-
-    .home-slider-text {
-        flex: 1;
-        max-width: 600px;
-    }
-
-    .home-slider-image {
-        flex: 1;
-        max-width: 500px;
-    }
-
-    .home-slider-image img {
-        width: 100%;
-        height: 400px;
-        object-fit: cover;
-        border-radius: 20px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    }
-
-    .home-slider-text h2 {
-        font-size: 2.5rem;
-        margin-bottom: 25px;
-        color: #1e293b;
-    }
-
-    .home-slider-text h3 {
-        font-size: 1.5rem;
-        margin: 30px 0 15px;
-        color: #334155;
-    }
-
-    .home-slider-text p {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        color: #64748b;
-        margin-bottom: 20px;
-    }
-
-    .home-slider-text ul {
-        margin: 20px 0;
-        padding-left: 20px;
-        color: #64748b;
-    }
-
-    .home-slider-text li {
-        margin-bottom: 10px;
-        font-size: 1.1rem;
-        position: relative;
-        padding-left: 25px;
-    }
-
-    .home-slider-text li:before {
-        content: "•";
-        color: #667eea;
-        font-size: 1.5rem;
-        position: absolute;
-        left: 0;
-        top: -2px;
-    }
-
-    /* HOME PAGE TECH GRID */
-    .home-tech-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-        margin: 50px 0;
-    }
-
-    /* When only 2 cards are visible in a specific slide */
-    .home-slider-text .home-tech-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .home-tech-card {
-        background: white;
-        padding: 35px;
-        border-radius: 16px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        min-height: 200px;
-    }
-
-    .home-tech-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-    }
-
-    .home-tech-card h3 {
-        font-size: 1.5rem;
-        color: #1e293b;
-        margin-bottom: 15px;
-        line-height: 1.3;
-    }
-
-    .home-tech-card p {
-        color: #64748b;
-        line-height: 1.6;
-        margin: 0;
-        font-size: 1.05rem;
-    }
-
-    /* HOME SLIDER CONTROLS */
-    .home-slider-controls {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 30px;
-        margin-top: 40px;
-    }
-
-    .home-slider-btn {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border: none;
-        color: white;
-        font-size: 1.3rem;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
-    }
-
-    .home-slider-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-    }
-
-    .home-slider-dots {
-        display: flex;
-        gap: 15px;
-    }
-
-    .home-slider-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: #e2e8f0;
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .home-slider-dot.active {
-        background: #667eea;
-        transform: scale(1.3);
-    }
-
-    /* HOME PAGE WHY CHOOSE SECTION */
-    .home-why-choose-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 25px;
-        margin-top: 40px;
-    }
-
-    .home-reason-card {
-        background: white;
-        padding: 25px;
-        border-radius: 12px;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-        border-left: 4px solid #667eea;
-    }
-
-    .home-reason-card h4 {
-        font-size: 1.3rem;
-        color: #1e293b;
-        margin-bottom: 10px;
-    }
-
-    .home-reason-card p {
-        color: #64748b;
-        font-size: 1rem;
-    }
-
-    /* RESPONSIVE DESIGN FOR HOME SLIDER */
-    @media (max-width: 992px) {
-        .home-slider-content {
-            flex-direction: column;
-            text-align: center;
-            gap: 40px;
+        /* Sliding Content Sections - ADJUSTED PADDING */
+        .home-sliding-section {
+            position: relative;
+            overflow: hidden;
+            padding: 80px 0;
+            background: white;
         }
 
-        .home-slider-text, .home-slider-image {
-            max-width: 100%;
+        .home-sliding-section:nth-child(even) {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+
+        .home-content-slider {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .home-slider-container {
+            position: relative;
+            height: auto;
+            min-height: 500px;
+            overflow: visible;
+        }
+
+        .home-slider-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            pointer-events: none;
+            visibility: hidden;
+        }
+
+        .home-slider-content.active {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: all;
+            visibility: visible;
+            position: relative;
+        }
+
+        .home-slider-content.exit {
+            opacity: 0;
+            transform: translateX(-100px);
+            pointer-events: none;
+            visibility: hidden;
+        }
+
+        .home-slider-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .home-slider-image {
+            flex: 1;
+            max-width: 500px;
         }
 
         .home-slider-image img {
-            height: 300px;
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
         }
 
         .home-slider-text h2 {
-            font-size: 2rem;
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: #1e293b;
         }
 
-        .home-slider-text .home-tech-grid {
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 40px 0;
-        }
-
-        .home-tech-card {
-            padding: 25px;
-            min-height: 180px;
-        }
-
-        .home-tech-card h3 {
-            font-size: 1.4rem;
-        }
-
-        .home-tech-card p {
-            font-size: 1rem;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .home-slider-text h2 {
-            font-size: 1.8rem;
+        .home-slider-text h3 {
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
+            color: #334155;
         }
 
         .home-slider-text p {
-            font-size: 1rem;
-        }
-
-        /* For mobile, switch to single column when only 2 cards */
-        .home-slider-text .home-tech-grid {
-            grid-template-columns: 1fr;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .home-tech-card {
-            padding: 25px;
-            min-height: 160px;
-        }
-
-        .home-slider-btn {
-            width: 50px;
-            height: 50px;
             font-size: 1.1rem;
+            line-height: 1.6;
+            color: #64748b;
+            margin-bottom: 20px;
         }
-    }
 
-    @media (max-width: 480px) {
+        .home-slider-text ul {
+            margin: 20px 0;
+            padding-left: 20px;
+            color: #64748b;
+        }
+
+        .home-slider-text li {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .home-slider-text li:before {
+            content: "•";
+            color: #667eea;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        /* HOME PAGE TECH GRID */
+        .home-tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        /* When only 2 cards are visible in a specific slide */
         .home-slider-text .home-tech-grid {
-            gap: 15px;
-            margin: 30px 0;
+            grid-template-columns: repeat(2, 1fr);
         }
 
         .home-tech-card {
-            padding: 20px;
-            min-height: 150px;
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 200px;
+        }
+
+        .home-tech-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
         }
 
         .home-tech-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+            line-height: 1.3;
         }
 
         .home-tech-card p {
-            font-size: 0.95rem;
+            color: #64748b;
+            line-height: 1.6;
+            margin: 0;
+            font-size: 1.05rem;
         }
-    }
-</style>
+
+        /* HOME SLIDER CONTROLS */
+        .home-slider-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .home-slider-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .home-slider-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .home-slider-dots {
+            display: flex;
+            gap: 15px;
+        }
+
+        .home-slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .home-slider-dot.active {
+            background: #667eea;
+            transform: scale(1.3);
+        }
+
+        /* HOME PAGE WHY CHOOSE SECTION */
+        .home-why-choose-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .home-reason-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #667eea;
+        }
+
+        .home-reason-card h4 {
+            font-size: 1.3rem;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .home-reason-card p {
+            color: #64748b;
+            font-size: 1rem;
+        }
+
+        /* RESPONSIVE DESIGN FOR HOME SLIDER */
+        @media (max-width: 992px) {
+            .home-slider-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .home-slider-text,
+            .home-slider-image {
+                max-width: 100%;
+            }
+
+            .home-slider-image img {
+                height: 300px;
+            }
+
+            .home-slider-text h2 {
+                font-size: 2rem;
+            }
+
+            .home-slider-text .home-tech-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+                margin: 40px 0;
+            }
+
+            .home-tech-card {
+                padding: 25px;
+                min-height: 180px;
+            }
+
+            .home-tech-card h3 {
+                font-size: 1.4rem;
+            }
+
+            .home-tech-card p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .home-slider-text h2 {
+                font-size: 1.8rem;
+            }
+
+            .home-slider-text p {
+                font-size: 1rem;
+            }
+
+            /* For mobile, switch to single column when only 2 cards */
+            .home-slider-text .home-tech-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .home-tech-card {
+                padding: 25px;
+                min-height: 160px;
+            }
+
+            .home-slider-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .home-slider-text .home-tech-grid {
+                gap: 15px;
+                margin: 30px 0;
+            }
+
+            .home-tech-card {
+                padding: 20px;
+                min-height: 150px;
+            }
+
+            .home-tech-card h3 {
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+            }
+
+            .home-tech-card p {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
     <style>
         /* Backward Navigation Styles */
         :root {
@@ -366,14 +367,20 @@
 
         /* Section Styling - ADJUSTED PADDING */
         .section {
-            padding: 60px 0; /* Reduced from 80px */
+            padding: 60px 0;
+            /* Reduced from 80px */
         }
 
         /* Hero Section - ADJUSTED PADDING */
         .hero {
-            background: linear-gradient(135deg, #0a1929 0%, #1e293b 100%);
+            background: linear-gradient(135deg, rgba(10, 25, 41, 0.85) 0%, rgba(30, 41, 59, 0.85) 100%),
+                url('asserts/hero-bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: white;
-            padding: 100px 0 60px; /* Reduced from 120px 0 80px */
+            padding: 100px 0 60px;
+            /* Reduced from 120px 0 80px */
             position: relative;
             overflow: hidden;
         }
@@ -405,7 +412,8 @@
         .sliding-section {
             position: relative;
             overflow: hidden;
-            padding: 80px 0; /* Reduced from 100px */
+            padding: 80px 0;
+            /* Reduced from 100px */
             background: white;
         }
 
@@ -565,12 +573,14 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin: 50px 0; /* Reduced from 60px */
+            margin: 50px 0;
+            /* Reduced from 60px */
         }
 
         .tech-card {
             background: white;
-            padding: 35px; /* Reduced from 40px */
+            padding: 35px;
+            /* Reduced from 40px */
             border-radius: 16px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
@@ -595,13 +605,16 @@
         .why-choose-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px; /* Reduced from 30px */
-            margin-top: 40px; /* Reduced from 50px */
+            gap: 25px;
+            /* Reduced from 30px */
+            margin-top: 40px;
+            /* Reduced from 50px */
         }
 
         .reason-card {
             background: white;
-            padding: 25px; /* Reduced from 30px */
+            padding: 25px;
+            /* Reduced from 30px */
             border-radius: 12px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
             border-left: 4px solid #667eea;
@@ -630,7 +643,8 @@
                 gap: 40px;
             }
 
-            .slider-text, .slider-image {
+            .slider-text,
+            .slider-image {
                 max-width: 100%;
             }
 
@@ -643,11 +657,13 @@
             }
 
             .section {
-                padding: 50px 0; /* Adjusted for mobile */
+                padding: 50px 0;
+                /* Adjusted for mobile */
             }
 
             .hero {
-                padding: 80px 0 40px; /* Adjusted for mobile */
+                padding: 80px 0 40px;
+                /* Adjusted for mobile */
             }
         }
 
@@ -661,7 +677,8 @@
             }
 
             .sliding-section {
-                padding: 60px 0; /* Reduced for mobile */
+                padding: 60px 0;
+                /* Reduced for mobile */
             }
 
             .slider-text h2 {
@@ -684,7 +701,8 @@
 
         @media (max-width: 480px) {
             .hero {
-                padding: 60px 0 30px; /* Further reduced for mobile */
+                padding: 60px 0 30px;
+                /* Further reduced for mobile */
             }
 
             .hero h1 {
@@ -696,11 +714,13 @@
             }
 
             .sliding-section {
-                padding: 50px 0; /* Further reduced for mobile */
+                padding: 50px 0;
+                /* Further reduced for mobile */
             }
 
             .section {
-                padding: 40px 0; /* Further reduced for mobile */
+                padding: 40px 0;
+                /* Further reduced for mobile */
             }
         }
     </style>
@@ -737,185 +757,202 @@
     <header class="hero">
         <div class="hero-content">
             <h1>SecEnAI: Powering AI with Next-Gen Semiconductors</h1>
-            <p>Secure, trustworthy AI solutions from edge to cloud with lightweight deployment and consolidated telephony architecture.</p>
+            <p>Secure, trustworthy AI solutions from edge to cloud with lightweight deployment and consolidated
+                telephony architecture.</p>
             <div style="margin-top: 40px;">
                 <a href="services.html" class="btn btn-primary">Explore AI Solutions</a>
-                <a href="contact.html" class="btn btn-outline" style="margin-left: 15px; background: rgba(255,255,255,0.1); color: white; border-color: white;">Contact Us</a>
+                <a href="contact.html" class="btn btn-outline"
+                    style="margin-left: 15px; background: rgba(255,255,255,0.1); color: white; border-color: white;">Contact
+                    Us</a>
             </div>
         </div>
     </header>
 
-<!-- Section 1: AI-Centric Semiconductor Technologies -->
-<section class="home-sliding-section">
-    <div class="home-content-slider">
-        <div class="home-slider-container">
-            <!-- Slide 1 -->
-            <div class="home-slider-content active">
-                <div class="home-slider-text">
-                    <h2>AI-Centric Semiconductor Technologies</h2>
-                    <h3>AI Chip Design & Development</h3>
-                    <p>Custom AI chips featuring power-efficient architectures optimized for deep learning and machine intelligence workloads.</p>
-                    
-                    <h3>Edge Computing Hardware</h3>
-                    <p>AI inference and memory solutions for real-time processing, providing scalable semiconductor solutions for AI-driven workloads.</p>
-                    
-                    <h3>Advanced Semiconductor Test & Validation</h3>
-                    <p>AI-powered chip testing for performance and reliability, enhancing custom validation frameworks for next-generation AI applications.</p>
-                </div>
-                <div class="home-slider-image">
-                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80"
-                        alt="AI Chip Design">
-                </div>
-            </div>
+    <!-- Section 1: AI-Centric Semiconductor Technologies -->
+    <section class="home-sliding-section">
+        <div class="home-content-slider">
+            <div class="home-slider-container">
+                <!-- Slide 1 -->
+                <div class="home-slider-content active">
+                    <div class="home-slider-text">
+                        <h2>AI-Centric Semiconductor Technologies</h2>
+                        <h3>AI Chip Design & Development</h3>
+                        <p>Custom AI chips featuring power-efficient architectures optimized for deep learning and
+                            machine intelligence workloads.</p>
 
-            <!-- Slide 2 -->
-            <div class="home-slider-content">
-                <div class="home-slider-text">
-                    <h2>Domains We Transform</h2>
-                    
-                    <div class="home-tech-grid">
-                        <div class="home-tech-card">
-                            <h3>Chip Design & Manufacturing</h3>
-                            <p>Advanced semiconductor solutions for diverse applications including UAVs and autonomous systems.</p>
-                        </div>
-                        <div class="home-tech-card">
-                            <h3>Edge Computing Hardware</h3>
-                            <p>Low-power, high-performance processors for real-time AI inference at the edge.</p>
-                        </div>
-                        <div class="home-tech-card">
-                            <h3>Healthcare Solutions</h3>
-                            <p>AI-powered semiconductor solutions for medical devices and health monitoring systems.</p>
-                        </div>
-                        <div class="home-tech-card">
-                            <h3>Smart City Infrastructure</h3>
-                            <p>Intelligent semiconductor systems for urban management, transportation, and public services.</p>
-                        </div>
+                        <h3>Edge Computing Hardware</h3>
+                        <p>AI inference and memory solutions for real-time processing, providing scalable semiconductor
+                            solutions for AI-driven workloads.</p>
+
+                        <h3>Advanced Semiconductor Test & Validation</h3>
+                        <p>AI-powered chip testing for performance and reliability, enhancing custom validation
+                            frameworks for next-generation AI applications.</p>
+                    </div>
+                    <div class="home-slider-image">
+                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80"
+                            alt="AI Chip Design">
                     </div>
                 </div>
-                <div class="home-slider-image">
-                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80"
-                        alt="Domains We Transform">
-                </div>
-            </div>
 
-            <!-- Slide 3 -->
-            <div class="home-slider-content">
-                <div class="home-slider-text">
-                    <h2>AI-Native Semiconductor Design</h2>
-                    <p>Optimized for intelligence, speed, and efficiency, our semiconductor designs push performance boundaries for AI applications.</p>
-                    
-                    <h3>Why Choose SecEnAI?</h3>
-                    
-                    <div class="home-why-choose-grid">
-                        <div class="home-reason-card">
-                            <h4>Scalable AI Processing Solutions</h4>
-                            <p>In the era of deep learning and big data, we provide qualified tech solutions that align with your AI needs.</p>
-                        </div>
-                        <div class="home-reason-card">
-                            <h4>Precision Testing & Validation</h4>
-                            <p>Ensuring reliability for next-generation AI applications through rigorous testing and validation processes.</p>
-                        </div>
-                        <div class="home-reason-card">
-                            <h4>Expertise in AI Edge Computing</h4>
-                            <p>Specialized in development and testing of AI leadership solutions for secure and trustworthy systems.</p>
-                        </div>
-                        <div class="home-reason-card">
-                            <h4>Cutting-Edge Research</h4>
-                            <p>Continuous innovation in AI hardware design and semiconductor technology.</p>
+                <!-- Slide 2 -->
+                <div class="home-slider-content">
+                    <div class="home-slider-text">
+                        <h2>Domains We Transform</h2>
+
+                        <div class="home-tech-grid">
+                            <div class="home-tech-card">
+                                <h3>Chip Design & Manufacturing</h3>
+                                <p>Advanced semiconductor solutions for diverse applications including UAVs and
+                                    autonomous systems.</p>
+                            </div>
+                            <div class="home-tech-card">
+                                <h3>Edge Computing Hardware</h3>
+                                <p>Low-power, high-performance processors for real-time AI inference at the edge.</p>
+                            </div>
+                            <div class="home-tech-card">
+                                <h3>Healthcare Solutions</h3>
+                                <p>AI-powered semiconductor solutions for medical devices and health monitoring systems.
+                                </p>
+                            </div>
+                            <div class="home-tech-card">
+                                <h3>Smart City Infrastructure</h3>
+                                <p>Intelligent semiconductor systems for urban management, transportation, and public
+                                    services.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="home-slider-image">
-                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
-                        alt="AI Native Design">
-                </div>
-            </div>
-        </div>
-
-        <div class="home-slider-controls">
-            <button class="home-slider-btn home-prev-btn">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            
-            <div class="home-slider-dots">
-                <button class="home-slider-dot active" data-index="0"></button>
-                <button class="home-slider-dot" data-index="1"></button>
-                <button class="home-slider-dot" data-index="2"></button>
-            </div>
-            
-            <button class="home-slider-btn home-next-btn">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-    </div>
-</section>
-
-<!-- Section 2: Expert in AI Edge Computing -->
-<section class="home-sliding-section">
-    <div class="home-content-slider">
-        <div class="home-slider-container">
-            <!-- Slide 1 -->
-            <div class="home-slider-content active">
-                <div class="home-slider-text">
-                    <h2>Expert in AI Edge Computing Solutions</h2>
-                    <h3>AI-Optimized Designs</h3>
-                    <p>SecEnAI specializes in development and testing of AI leadership, providing optimized solutions for diverse applications.</p>
-                    
-                    <p>We are engineers, researchers, problem-solvers, and AI-based system enablers. Join us in shaping the future of AI-driven semiconductors toward secure, trustworthy edge computing applications.</p>
-                    
-                    <ul>
-                        <li>Secure AI hardware architecture</li>
-                        <li>Trustworthy computing platforms</li>
-                        <li>Lightweight deployment solutions</li>
-                        <li>Real-time edge processing</li>
-                    </ul>
-                </div>
-                <div class="home-slider-image">
-                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80"
-                        alt="Edge Computing">
-                </div>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="home-slider-content">
-                <div class="home-slider-text">
-                    <h2>Our Team & Culture</h2>
-                    <p>We are a team of passionate engineers, researchers, and problem-solvers dedicated to advancing AI semiconductor technology.</p>
-                    
-                    <div class="home-tech-grid">
-                        <div class="home-tech-card">
-                            <h3>Career Growth</h3>
-                            <p>Opportunities for professional development in emerging AI semiconductor fields.</p>
-                        </div>
-                        <div class="home-tech-card">
-                            <h3>Research Collaboration</h3>
-                            <p>Partnerships with academic institutions and industry leaders.</p>
-                        </div>
+                    <div class="home-slider-image">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80"
+                            alt="Domains We Transform">
                     </div>
                 </div>
-                <div class="home-slider-image">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
-                        alt="Team Collaboration">
+
+                <!-- Slide 3 -->
+                <div class="home-slider-content">
+                    <div class="home-slider-text">
+                        <h2>AI-Native Semiconductor Design</h2>
+                        <p>Optimized for intelligence, speed, and efficiency, our semiconductor designs push performance
+                            boundaries for AI applications.</p>
+
+                        <h3>Why Choose SecEnAI?</h3>
+
+                        <div class="home-why-choose-grid">
+                            <div class="home-reason-card">
+                                <h4>Scalable AI Processing Solutions</h4>
+                                <p>In the era of deep learning and big data, we provide qualified tech solutions that
+                                    align with your AI needs.</p>
+                            </div>
+                            <div class="home-reason-card">
+                                <h4>Precision Testing & Validation</h4>
+                                <p>Ensuring reliability for next-generation AI applications through rigorous testing and
+                                    validation processes.</p>
+                            </div>
+                            <div class="home-reason-card">
+                                <h4>Expertise in AI Edge Computing</h4>
+                                <p>Specialized in development and testing of AI leadership solutions for secure and
+                                    trustworthy systems.</p>
+                            </div>
+                            <div class="home-reason-card">
+                                <h4>Cutting-Edge Research</h4>
+                                <p>Continuous innovation in AI hardware design and semiconductor technology.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="home-slider-image">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
+                            alt="AI Native Design">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="home-slider-controls">
-            <button class="home-slider-btn home-prev-btn">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            
-            <div class="home-slider-dots">
-                <button class="home-slider-dot active" data-index="0"></button>
-                <button class="home-slider-dot" data-index="1"></button>
+            <div class="home-slider-controls">
+                <button class="home-slider-btn home-prev-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="home-slider-dots">
+                    <button class="home-slider-dot active" data-index="0"></button>
+                    <button class="home-slider-dot" data-index="1"></button>
+                    <button class="home-slider-dot" data-index="2"></button>
+                </div>
+
+                <button class="home-slider-btn home-next-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
-            
-            <button class="home-slider-btn home-next-btn">
-                <i class="fas fa-chevron-right"></i>
-            </button>
         </div>
-    </div>
-</section>
+    </section>
+
+    <!-- Section 2: Expert in AI Edge Computing -->
+    <section class="home-sliding-section">
+        <div class="home-content-slider">
+            <div class="home-slider-container">
+                <!-- Slide 1 -->
+                <div class="home-slider-content active">
+                    <div class="home-slider-text">
+                        <h2>Expert in AI Edge Computing Solutions</h2>
+                        <h3>AI-Optimized Designs</h3>
+                        <p>SecEnAI specializes in development and testing of AI leadership, providing optimized
+                            solutions for diverse applications.</p>
+
+                        <p>We are engineers, researchers, problem-solvers, and AI-based system enablers. Join us in
+                            shaping the future of AI-driven semiconductors toward secure, trustworthy edge computing
+                            applications.</p>
+
+                        <ul>
+                            <li>Secure AI hardware architecture</li>
+                            <li>Trustworthy computing platforms</li>
+                            <li>Lightweight deployment solutions</li>
+                            <li>Real-time edge processing</li>
+                        </ul>
+                    </div>
+                    <div class="home-slider-image">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80"
+                            alt="Edge Computing">
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="home-slider-content">
+                    <div class="home-slider-text">
+                        <h2>Our Team & Culture</h2>
+                        <p>We are a team of passionate engineers, researchers, and problem-solvers dedicated to
+                            advancing AI semiconductor technology.</p>
+
+                        <div class="home-tech-grid">
+                            <div class="home-tech-card">
+                                <h3>Career Growth</h3>
+                                <p>Opportunities for professional development in emerging AI semiconductor fields.</p>
+                            </div>
+                            <div class="home-tech-card">
+                                <h3>Research Collaboration</h3>
+                                <p>Partnerships with academic institutions and industry leaders.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="home-slider-image">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+                            alt="Team Collaboration">
+                    </div>
+                </div>
+            </div>
+
+            <div class="home-slider-controls">
+                <button class="home-slider-btn home-prev-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="home-slider-dots">
+                    <button class="home-slider-dot active" data-index="0"></button>
+                    <button class="home-slider-dot" data-index="1"></button>
+                </div>
+
+                <button class="home-slider-btn home-next-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
 
     <!-- REMOVED: Contact Information Section -->
 
@@ -962,7 +999,7 @@
 
     <script>
         // Sliding Content Carousel System
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const sliders = document.querySelectorAll('.slider-container');
             let autoTimers = [];
 
@@ -972,7 +1009,7 @@
                 const dots = container.closest('.content-slider').querySelectorAll('.slider-dot');
                 const prevBtn = container.closest('.content-slider').querySelector('.prev-btn');
                 const nextBtn = container.closest('.content-slider').querySelector('.next-btn');
-                
+
                 let currentSlide = 0;
                 const totalSlides = slides.length;
                 let autoSlideTimer;
@@ -981,25 +1018,25 @@
                     // Exit current slide
                     slides[currentSlide].classList.remove('active');
                     slides[currentSlide].classList.add('exit');
-                    
+
                     // Reset exit class after animation
                     setTimeout(() => {
                         slides[currentSlide].classList.remove('exit');
                     }, 800);
-                    
+
                     // Update current slide
                     currentSlide = index;
-                    
+
                     // Show new slide
                     setTimeout(() => {
                         slides[currentSlide].classList.add('active');
                     }, 50);
-                    
+
                     // Update dots
                     dots.forEach((dot, i) => {
                         dot.classList.toggle('active', i === currentSlide);
                     });
-                    
+
                     // Reset auto-slide timer
                     resetAutoSlide();
                 }
@@ -1053,7 +1090,7 @@
                 // Initialize
                 showSlide(0);
                 resetAutoSlide();
-                
+
                 // Store timer for cleanup
                 autoTimers.push(autoSlideTimer);
             }
@@ -1113,7 +1150,7 @@
 
                 setTimeout(() => {
                     circle.style.transform = 'translate(-50%, -50%) scale(0.01)';
-                    
+
                     // Redirect to hero.html after animation
                     setTimeout(() => {
                         window.location.href = 'hero.html';
@@ -1123,14 +1160,14 @@
 
             function handleScroll() {
                 if (isAnimating) return;
-                
+
                 const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-                
+
                 // Trigger when user scrolls to the top of the page
                 if (currentScroll <= 5 && currentScroll < lastScrollTop) {
                     triggerBackAnimation();
                 }
-                
+
                 lastScrollTop = currentScroll;
             }
 
@@ -1139,9 +1176,9 @@
                     e.preventDefault();
                     return;
                 }
-                
+
                 const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-                
+
                 // Trigger when user scrolls up at the top of the page
                 if (currentScroll <= 5 && e.deltaY < 0) {
                     e.preventDefault();
@@ -1158,20 +1195,20 @@
             let touchStartY = 0;
             let touchStartTime = 0;
 
-            document.addEventListener('touchstart', function(e) {
+            document.addEventListener('touchstart', function (e) {
                 touchStartY = e.touches[0].clientY;
                 touchStartTime = Date.now();
             }, { passive: true });
 
-            document.addEventListener('touchend', function(e) {
+            document.addEventListener('touchend', function (e) {
                 if (isAnimating) return;
-                
+
                 const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
                 const touchEndY = e.changedTouches[0].clientY;
                 const touchEndTime = Date.now();
                 const touchDiff = touchStartY - touchEndY;
                 const timeDiff = touchEndTime - touchStartTime;
-                
+
                 // Fast swipe up detection at top of page
                 if (currentScroll <= 5 && touchDiff < -50 && timeDiff < 200) {
                     triggerBackAnimation();
@@ -1180,117 +1217,112 @@
         });
     </script>
     <script>
-    // HOME PAGE SLIDING CAROUSEL SYSTEM
-    document.addEventListener('DOMContentLoaded', function() {
-        const sliders = document.querySelectorAll('.home-slider-container');
-        let autoTimers = [];
+        // HOME PAGE SLIDING CAROUSEL SYSTEM
+        document.addEventListener('DOMContentLoaded', function () {
+            const sliders = document.querySelectorAll('.home-slider-container');
+            let autoTimers = [];
 
-        function initializeSlider(slider) {
-            const container = slider;
-            const slides = container.querySelectorAll('.home-slider-content');
-            const dots = container.closest('.home-content-slider').querySelectorAll('.home-slider-dot');
-            const prevBtn = container.closest('.home-content-slider').querySelector('.home-prev-btn');
-            const nextBtn = container.closest('.home-content-slider').querySelector('.home-next-btn');
-            
-            let currentSlide = 0;
-            const totalSlides = slides.length;
-            let autoSlideTimer;
+            function initializeSlider(slider) {
+                const container = slider;
+                const slides = container.querySelectorAll('.home-slider-content');
+                const dots = container.closest('.home-content-slider').querySelectorAll('.home-slider-dot');
+                const prevBtn = container.closest('.home-content-slider').querySelector('.home-prev-btn');
+                const nextBtn = container.closest('.home-content-slider').querySelector('.home-next-btn');
 
-            function showSlide(index) {
-                // Exit current slide
-                slides[currentSlide].classList.remove('active');
-                slides[currentSlide].classList.add('exit');
-                
-                // Reset exit class after animation
-                setTimeout(() => {
-                    slides[currentSlide].classList.remove('exit');
-                }, 800);
-                
-                // Update current slide
-                currentSlide = index;
-                
-                // Show new slide
-                setTimeout(() => {
-                    slides[currentSlide].classList.add('active');
-                }, 50);
-                
-                // Update dots
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === currentSlide);
-                });
-                
-                // Reset auto-slide timer
-                resetAutoSlide();
-            }
+                let currentSlide = 0;
+                const totalSlides = slides.length;
+                let autoSlideTimer;
 
-            function nextSlide() {
-                const nextIndex = (currentSlide + 1) % totalSlides;
-                showSlide(nextIndex);
-            }
+                function showSlide(index) {
+                    // Exit current slide
+                    slides[currentSlide].classList.remove('active');
+                    slides[currentSlide].classList.add('exit');
 
-            function prevSlide() {
-                const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
-                showSlide(prevIndex);
-            }
+                    // Reset exit class after animation
+                    setTimeout(() => {
+                        slides[currentSlide].classList.remove('exit');
+                    }, 800);
 
-            function goToSlide(index) {
-                if (index >= 0 && index < totalSlides) {
-                    showSlide(index);
+                    // Update current slide
+                    currentSlide = index;
+
+                    // Show new slide
+                    setTimeout(() => {
+                        slides[currentSlide].classList.add('active');
+                    }, 50);
+
+                    // Update dots
+                    dots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === currentSlide);
+                    });
+
+                    // Reset auto-slide timer
+                    resetAutoSlide();
                 }
-            }
 
-            function resetAutoSlide() {
-                clearTimeout(autoSlideTimer);
-                autoSlideTimer = setTimeout(() => {
-                    nextSlide();
-                }, 8000); // Auto-slide every 8 seconds
-            }
+                function nextSlide() {
+                    const nextIndex = (currentSlide + 1) % totalSlides;
+                    showSlide(nextIndex);
+                }
 
-            // Event Listeners
-            if (prevBtn) {
-                prevBtn.addEventListener('click', () => {
-                    prevSlide();
-                    resetAutoSlide();
+                function prevSlide() {
+                    const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+                    showSlide(prevIndex);
+                }
+
+                function goToSlide(index) {
+                    if (index >= 0 && index < totalSlides) {
+                        showSlide(index);
+                    }
+                }
+
+                function resetAutoSlide() {
+                    clearTimeout(autoSlideTimer);
+                    autoSlideTimer = setTimeout(() => {
+                        nextSlide();
+                    }, 8000); // Auto-slide every 8 seconds
+                }
+
+                // Event Listeners
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', () => {
+                        prevSlide();
+                        resetAutoSlide();
+                    });
+                }
+
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', () => {
+                        nextSlide();
+                        resetAutoSlide();
+                    });
+                }
+
+                dots.forEach(dot => {
+                    dot.addEventListener('click', () => {
+                        const index = parseInt(dot.getAttribute('data-index'));
+                        goToSlide(index);
+                        resetAutoSlide();
+                    });
                 });
+
+                // Initialize
+                showSlide(0);
+                resetAutoSlide();
+
+                // Store timer for cleanup
+                autoTimers.push(autoSlideTimer);
             }
 
-            if (nextBtn) {
-                nextBtn.addEventListener('click', () => {
-                    nextSlide();
-                    resetAutoSlide();
-                });
-            }
+            // Initialize all sliders
+            sliders.forEach(initializeSlider);
 
-            dots.forEach(dot => {
-                dot.addEventListener('click', () => {
-                    const index = parseInt(dot.getAttribute('data-index'));
-                    goToSlide(index);
-                    resetAutoSlide();
-                });
+            // Cleanup on page unload
+            window.addEventListener('beforeunload', () => {
+                autoTimers.forEach(timer => clearTimeout(timer));
             });
-
-            // Initialize
-            showSlide(0);
-            resetAutoSlide();
-            
-            // Store timer for cleanup
-            autoTimers.push(autoSlideTimer);
-        }
-
-        // Initialize all sliders
-        sliders.forEach(initializeSlider);
-
-        // Cleanup on page unload
-        window.addEventListener('beforeunload', () => {
-            autoTimers.forEach(timer => clearTimeout(timer));
         });
-    });
-</script>
+    </script>
 </body>
 
 </html>
-
-
-
-
-
