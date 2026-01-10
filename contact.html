@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | SecEnAI</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 </head>
 
 <body>
@@ -14,13 +16,17 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">SecEnAI</a>
-            <div class="nav-links">
+            <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
                 <a href="services.html">Services</a>
                 <a href="careers.html">Careers</a>
                 <a href="about.html">About</a>
                 <a href="contact.html" class="active">Contact</a>
             </div>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
             <a href="contact.html" class="btn btn-primary">Get in Touch</a>
         </div>
     </nav>
@@ -72,7 +78,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary"
-                        style="width:100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">Send
+                        style="width:100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: block !important; visibility: visible !important; opacity: 1 !important; margin-top: 20px;">Send
                         Message</button>
 
                     <p id="formStatus" style="margin-top:10px;font-size:13px;"></p>
@@ -126,7 +132,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 

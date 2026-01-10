@@ -7,571 +7,19 @@
     <title>Services | SecEnAI</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        :root {
-            --transition-speed: 0.6s;
-            --primary-color: #667eea;
-            --secondary-color: #764ba2;
-            --step-color: #4f46e5;
-            --line-color: #c7d2fe;
-            --dotted-line-color: rgba(79, 70, 229, 0.4);
-        }
-
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: auto;
-            overflow-x: hidden;
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        /* Main layout */
-        .main-layout {
-            position: relative;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* Navigation Bar */
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-            height: 80px;
-        }
-
-        /* Header Section */
-        .header-section {
-            height: 300px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            margin-top: -80px;
-            padding-top: 80px;
-        }
-
-        .header-content {
-            width: 100%;
-            max-width: 1200px;
-            padding: 0 20px;
-            text-align: center;
-        }
-
-        .header-content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #1e293b;
-        }
-
-        .header-content p {
-            font-size: 1.1rem;
-            color: #64748b;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .section-subtitle {
-            color: var(--primary-color);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-            display: block;
-            font-size: 0.9rem;
-        }
-
-        /* Service Sections Container */
-        .service-sections-container {
-            position: relative;
-            padding: 0;
-            width: 100%;
-        }
-
-        /* Individual Service Section */
-        .service-section {
-            position: relative;
-            width: 100%;
-            padding: 80px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .service-section:last-child {
-            border-bottom: none;
-        }
-
-        /* Life Cycle Steps Container */
-        .lifecycle-container {
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-        }
-
-        /* Steps Grid with Connection Lines */
-        .steps-wrapper {
-            position: relative;
-            padding: 40px 0;
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 15px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Connection lines between steps */
-        .connection-lines {
-            position: absolute;
-            top: 62px;
-            left: 20px;
-            width: calc(100% - 40px);
-            height: 3px;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .dotted-line {
-            position: absolute;
-            height: 3px;
-            width: calc(100% - 140px);
-            left: 70px;
-            top: 0;
-            border-top: 3px dotted var(--dotted-line-color);
-        }
-
-        /* Animated dots moving along the line */
-        .moving-dot {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            top: -2.5px;
-            left: 0;
-            animation: moveDot 8s linear infinite;
-            box-shadow: 0 0 10px rgba(102, 126, 234, 0.7);
-        }
-
-        @keyframes moveDot {
-            0% {
-                left: 0;
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.3);
-            }
-
-            100% {
-                left: 100%;
-                transform: scale(1);
-            }
-        }
-
-        .step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            opacity: 0.7;
-            transform: translateY(0);
-            transition: all 0.6s ease;
-            cursor: pointer;
-            z-index: 3;
-        }
-
-        .step.active {
-            opacity: 1;
-            transform: translateY(-5px);
-        }
-
-        .step-number {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: white;
-            border: 3px solid var(--line-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--step-color);
-            font-size: 1.1rem;
-            margin-bottom: 12px;
-            z-index: 3;
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        .step.active .step-number {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border-color: var(--primary-color);
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        /* Step Content */
-        .step-content {
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s ease;
-            width: 100%;
-            max-width: 180px;
-            height: 260px;
-            display: flex;
-            flex-direction: column;
-            border: 2px solid transparent;
-            overflow: hidden;
-        }
-
-        .step.active .step-content {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
-            border-color: rgba(102, 126, 234, 0.2);
-        }
-
-        /* Step Image */
-        .step-image {
-            width: 100%;
-            height: 100px;
-            overflow: hidden;
-            border-radius: 6px;
-            margin-bottom: 12px;
-        }
-
-        .step-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .step.active .step-image img {
-            transform: scale(1.05);
-        }
-
-        .step-content h3 {
-            margin: 0 0 8px 0;
-            color: #1e293b;
-            font-size: 0.95rem;
-            font-weight: 700;
-            min-height: 2.2rem;
-        }
-
-        .step-content p {
-            margin: 0;
-            color: #64748b;
-            font-size: 0.8rem;
-            line-height: 1.4;
-            flex-grow: 1;
-            overflow: hidden;
-        }
-
-        /* Step Details */
-        .step-details {
-            width: 100%;
-            max-width: 1000px;
-            margin: 40px auto 0;
-            background: white;
-            border-radius: 14px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .step-details h2 {
-            color: #1e293b;
-            margin-bottom: 18px;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .step-details h2 .step-badge {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .step-details p {
-            color: #64748b;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-        }
-
-        .step-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin: 25px 0;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 12px;
-            background: #f8fafc;
-            border-radius: 8px;
-            border-left: 3px solid var(--primary-color);
-        }
-
-        .feature-icon {
-            color: var(--primary-color);
-            font-size: 1rem;
-            margin-top: 2px;
-        }
-
-        .feature-text {
-            flex: 1;
-        }
-
-        .feature-text h4 {
-            margin: 0 0 6px 0;
-            color: #1e293b;
-            font-size: 0.95rem;
-        }
-
-        .feature-text p {
-            margin: 0;
-            color: #64748b;
-            font-size: 0.85rem;
-            line-height: 1.4;
-        }
-
-        /* Navigation Arrows */
-        .step-navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px solid #f1f5f9;
-        }
-
-        .nav-btn {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .nav-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        .nav-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .step-counter {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .current-step {
-            color: #1e293b;
-            font-weight: 700;
-            font-size: 0.95rem;
-        }
-
-        .step-progress {
-            color: #64748b;
-            font-size: 0.8rem;
-        }
-
-        /* AI Chip Section - Improved Centering */
-        .ai-chip-section {
-            width: 100%;
-            max-width: 1200px;
-            padding: 0 20px;
-            margin: 0 auto;
-        }
-
-        .section-content {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 60px;
-            width: 100%;
-        }
-
-        .text-content {
-            flex: 1;
-            max-width: 550px;
-        }
-
-        .image-content {
-            flex: 1;
-            max-width: 550px;
-        }
-
-        .image-content img {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Section headings */
-        .text-content h2 {
-            font-size: 2rem;
-            margin-bottom: 25px;
-            color: #1e293b;
-        }
-
-        .section-heading {
-            font-size: 1.4rem;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            color: #334155;
-            font-weight: 600;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 8px;
-        }
-
-        .text-content p {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: #64748b;
-            margin-bottom: 25px;
-        }
-
-        /* Key Features list styling */
-        .features-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 20px 0;
-        }
-
-        .features-list li {
-            margin-bottom: 15px;
-            padding-left: 30px;
-            position: relative;
-            color: #64748b;
-            line-height: 1.6;
-        }
-
-        .features-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--primary-color);
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1400px) {
-            .steps-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 20px;
-            }
-
-            .connection-lines {
-                display: none;
-            }
-
-            .step-content {
-                max-width: 100%;
-                height: 240px;
-            }
-        }
-
-        @media (max-width: 1100px) {
-            .steps-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .step-features {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .steps-grid {
-                grid-template-columns: repeat(2, 1fr);
-                max-width: 600px;
-                margin: 0 auto;
-            }
-
-            .section-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .text-content,
-            .image-content {
-                max-width: 100%;
-            }
-
-            .features-list li {
-                text-align: left;
-                display: inline-block;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .steps-grid {
-                grid-template-columns: 1fr;
-                max-width: 350px;
-            }
-
-            .header-section {
-                height: 200px;
-            }
-
-            .header-content h1 {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/services.css">
 </head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H2ZJ34LGKL"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-H2ZJ34LGKL');
+</script>
 
 <body>
     <!-- Main Layout Container -->
@@ -582,186 +30,78 @@
                 <a href="index.html" class="logo">SecEnAI</a>
                 <div class="nav-links" id="navLinks">
                     <a href="index.html">Home</a>
-                    <a href="services.html">Services</a>
+                    <a href="services.html" class="active">Services</a>
                     <a href="careers.html">Careers</a>
                     <a href="about.html">About</a>
                     <a href="contact.html">Contact</a>
                 </div>
-                <button id="menuToggle" class="menu-toggle"><i class="fas fa-bars"></i></button>
-                <a href="contact.html" class="btn btn-primary desktop-only">Get in Touch</a>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <a href="contact.html" class="btn btn-primary">Get in Touch</a>
             </div>
         </nav>
-
         <!-- Header Section -->
         <section class="header-section">
             <div class="header-content">
                 <span class="section-subtitle">Our Services</span>
                 <h1>Life Cycle Assure</h1>
-                <p>A comprehensive 7-step AI-powered lifecycle management system ensuring quality, efficiency, and risk
-                    mitigation throughout the agricultural value chain.</p>
+                <p>A comprehensive 7-step AI-powered lifecycle management system<br>
+                    ensuring quality, efficiency, and risk mitigation throughout the<br>
+                    agricultural value chain.</p>
             </div>
         </section>
 
-        <!-- Service Sections Slider -->
-        <div class="services-slider-wrapper"
-            style="position: relative; max-width: 1400px; margin: 0 auto; overflow: hidden; min-height: 800px;">
-            <div class="services-slider-container" style="position: relative; height: auto;">
+        <!-- Single Service Section (no slider) -->
+        <section class="service-section" id="life-cycle-service">
+            <div class="flowchart-section">
+                <h3><i class="fas fa-project-diagram"></i> Life Cycle Flowchart</h3>
 
-                <!-- Slide 1: Life Cycle Assure -->
-                <div class="service-slide active"
-                    style="display: block; width: 100%; transition: opacity 0.5s ease; position: relative; padding: 0 80px; box-sizing: border-box;">
-                    <section class="service-section" id="service-0">
-                        <div class="lifecycle-container">
-                            <!-- Step Details Section (Moved up for better layout in slider) -->
-                            <div class="step-details" id="stepDetails" style="margin-bottom: 40px;">
-                                <h2>
-                                    <span class="step-badge">1</span>
-                                    <span id="stepTitle">Land Assure</span>
-                                </h2>
-                                <p id="stepDescription">Comprehensive land assessment and suitability analysis for
-                                    optimal agricultural planning and risk mitigation.</p>
-                                <div class="step-features" id="stepFeatures"></div>
-                                <div class="step-navigation">
-                                    <button class="nav-btn" id="prevStep" disabled><i class="fas fa-chevron-left"></i>
-                                        Previous Step</button>
-                                    <div class="step-counter">
-                                        <span class="current-step">Step <span id="currentStepNumber">1</span> of
-                                            7</span>
-                                        <span class="step-progress" id="stepProgress">Land Assure</span>
-                                    </div>
-                                    <button class="nav-btn" id="nextStep">Next Step <i
-                                            class="fas fa-chevron-right"></i></button>
-                                </div>
-                            </div>
-
-                            <div class="steps-wrapper">
-                                <div class="connection-lines">
-                                    <div class="dotted-line">
-                                        <div class="moving-dot"></div>
-                                    </div>
-                                </div>
-                                <div class="steps-grid" id="stepsGrid">
-                                    <div class="step active" data-step="1">
-                                        <div class="step-number">1</div>
-                                        <div class="step-content">
-                                            <div class="step-image"><img
-                                                    src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=400&h=200&q=80"
-                                                    alt="Land Assure"></div>
-                                            <h3>Land Assure</h3>
-                                            <p>Comprehensive land assessment and suitability analysis.</p>
-                                        </div>
-                                    </div>
-                                    <div class="step" data-step="2">
-                                        <div class="step-number">2</div>
-                                        <div class="step-content">
-                                            <div class="step-image"><img src="./asserts/about_page/gap.jpg"
-                                                    alt="Gap Assist"></div>
-                                            <h3>Gap Assist</h3>
-                                            <p>Identifying and bridging gaps in agricultural practices.</p>
-                                        </div>
-                                    </div>
-                                    <div class="step" data-step="3">
-                                        <div class="step-number">3</div>
-                                        <div class="step-content">
-                                            <div class="step-image"><img
-                                                    src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=400&h=200&q=80"
-                                                    alt="Seed Quality"></div>
-                                            <h3>Seed Quality</h3>
-                                            <p>AI-powered seed inspection and viability prediction.</p>
-                                        </div>
-                                    </div>
-                                    <div class="step" data-step="4">
-                                        <div class="step-number">4</div>
-                                        <div class="step-content">
-                                            <div class="step-image"><img
-                                                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&h=200&q=80"
-                                                    alt="Advisory"></div>
-                                            <h3>Advisory</h3>
-                                            <p>Real-time expert guidance and recommendations.</p>
-                                        </div>
-                                    </div>
-                                    <div class="step" data-step="5">
-                                        <div class="step-number">5</div>
-                                        <div class="step-content">
-                                            <div class="step-image"><img src="./asserts/about_page/crop.png"
-                                                    alt="Crop Health"></div>
-                                            <h3>Crop Health</h3>
-                                            <p>Continuous monitoring of crop health and disease detection.</p>
-                                        </div>
-                                    </div>
-                                    <div class="step" data-step="6">
-                                        <div class="step-number">6</div>
-                                        <div class="step-content">
-                                            <div class="step-image"><img
-                                                    src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=400&h=200&q=80"
-                                                    alt="Distribution"></div>
-                                            <h3>Distribution</h3>
-                                            <p>Optimized logistics and supply chain management.</p>
-                                        </div>
-                                    </div>
-                                    <div class="step" data-step="7">
-                                        <div class="step-number">7</div>
-                                        <div class="step-content">
-                                            <div class="step-image"><img
-                                                    src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&h=200&q=80"
-                                                    alt="Insurance"></div>
-                                            <h3>Insurance</h3>
-                                            <p>Comprehensive insurance solutions including gap insurance.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <!-- Desktop: Circular Flowchart -->
+                <div class="circular-flowchart-container">
+                    <div class="circular-steps-wrapper">
+                        <div class="circular-steps" id="circularSteps">
+                            <!-- Steps will be dynamically positioned -->
                         </div>
-                    </section>
+
+                        <div class="flowchart-center">
+                            <h2>Life Cycle Assure</h2>
+                            <p>AI-Powered Agricultural Management</p>
+                        </div>
+
+                        <!-- SVG for connections -->
+                        <svg class="flowchart-connections" id="flowchartConnections"></svg>
+                    </div>
                 </div>
 
-                <!-- Slide 2: AI Chip Design -->
-                <div class="service-slide"
-                    style="display: none; width: 100%; transition: opacity 0.5s ease; padding: 0 80px; box-sizing: border-box;">
-                    <section class="service-section" id="service-1" style="background: #f8fafc;">
-                        <div class="ai-chip-section">
-                            <div class="section-content">
-                                <div class="text-content">
-                                    <h2>AI Chip Design & Hardware</h2>
-                                    <div class="section-heading">Precision Scaling</div>
-                                    <p>Advanced 3-bit, 4-bit, and 1-bit processing architectures optimized for
-                                        agricultural edge computing applications, enabling real-time data processing in
-                                        field conditions.</p>
-                                    <div class="section-heading">Key Features</div>
-                                    <ul class="features-list">
-                                        <li>Low-power consumption for extended field operation</li>
-                                        <li>Edge computing capabilities for real-time analysis</li>
-                                        <li>Robust design for harsh agricultural environments</li>
-                                        <li>Scalable architecture for diverse farm sizes</li>
-                                    </ul>
-                                </div>
-                                <div class="image-content">
-                                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80"
-                                        alt="AI Chip Design & Hardware">
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                <!-- Mobile: Vertical Steps Layout -->
+                <div class="vertical-steps-wrapper" id="verticalSteps">
+                    <!-- Vertical steps will be dynamically generated by JavaScript -->
                 </div>
 
+                <!-- Flowchart Controls -->
+                <!-- <div class="flowchart-controls">
+                    <button class="nav-btn" id="prevStep">
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+
+                    <div class="step-counter">
+                        <div class="current-step">Step <span id="currentStepNumber">1</span> of 7</div>
+                        <div class="step-progress" id="stepProgress">Land Assure</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill" style="width: 14.28%"></div>
+                        </div>
+                    </div>
+
+                    <button class="nav-btn" id="nextStep">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div> -->
             </div>
+        </section>
 
-            <!-- Slider Controls -->
-            <button class="slider-btn prev-slide"
-                style="position: absolute; top: 50%; left: 20px; transform: translateY(-50%); background: white; border: none; width: 50px; height: 50px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer; z-index: 10;"><i
-                    class="fas fa-chevron-left"></i></button>
-            <button class="slider-btn next-slide"
-                style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); background: white; border: none; width: 50px; height: 50px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer; z-index: 10;"><i
-                    class="fas fa-chevron-right"></i></button>
-
-            <div class="slider-dots" style="text-align: center; margin-bottom: 20px;">
-                <span class="dot active"
-                    style="display: inline-block; width: 12px; height: 12px; background: #ccc; border-radius: 50%; margin: 0 5px; cursor: pointer;"></span>
-                <span class="dot"
-                    style="display: inline-block; width: 12px; height: 12px; background: #ccc; border-radius: 50%; margin: 0 5px; cursor: pointer;"></span>
-            </div>
-        </div>
-
+        <!-- Footer -->
         <footer>
             <div class="container">
                 <div class="footer-grid">
@@ -803,188 +143,29 @@
         </footer>
     </div>
 
-    <!-- Scripts -->
-    <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Main Service Slider Logic
-            const slides = document.querySelectorAll('.service-slide');
-            const dots = document.querySelectorAll('.dot');
-            const prevBtn = document.querySelector('.prev-slide');
-            const nextBtn = document.querySelector('.next-slide');
-            let currentSlide = 0;
+    <!-- Step Details Modal -->
+    <div class="step-modal" id="stepModal">
+        <div class="step-modal-content">
+            <div class="step-modal-header">
+                <h2 id="modalTitle">Step Title</h2>
+                <button class="step-modal-close" id="modalClose" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="step-modal-body">
+                <p id="modalDetails">Step details will appear here.</p>
+                <div class="step-modal-features" id="modalFeatures">
+                    <h3><i class="fas fa-check-circle"></i> Key Features</h3>
+                    <ul id="modalFeaturesList">
+                        <!-- Features will be dynamically added -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            function showSlide(index) {
-                slides.forEach(slide => slide.style.display = 'none');
-                dots.forEach(dot => {
-                    dot.style.background = '#ccc';
-                    dot.classList.remove('active');
-                });
-
-                slides[index].style.display = 'block';
-                dots[index].style.background = '#667eea'; // Primary color
-                dots[index].classList.add('active');
-                currentSlide = index;
-            }
-
-            if (prevBtn && nextBtn) {
-                prevBtn.addEventListener('click', () => {
-                    let newIndex = currentSlide - 1;
-                    if (newIndex < 0) newIndex = slides.length - 1;
-                    showSlide(newIndex);
-                });
-
-                nextBtn.addEventListener('click', () => {
-                    let newIndex = currentSlide + 1;
-                    if (newIndex >= slides.length) newIndex = 0;
-                    showSlide(newIndex);
-                });
-            }
-
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => showSlide(index));
-            });
-
-            // lifeCycleSteps Data and logic remains same...
-            const lifeCycleSteps = [
-                {
-                    title: "Land Assure",
-                    description: "Comprehensive land assessment and suitability analysis for optimal agricultural planning and risk mitigation.",
-                    features: [
-                        { title: "Soil Analysis", description: "Detailed assessment of soil quality, composition, and nutrient levels", icon: "fas fa-seedling" },
-                        { title: "Topographic Study", description: "Analysis of land topography for irrigation and drainage planning", icon: "fas fa-map" },
-                        { title: "Climate Assessment", description: "Evaluation of climate patterns and weather conditions", icon: "fas fa-cloud-sun" },
-                        { title: "Risk Evaluation", description: "Identification of potential risks and mitigation strategies", icon: "fas fa-exclamation-triangle" }
-                    ]
-                },
-                // ... (rest of the steps data) ...
-                {
-                    title: "Gap Assist",
-                    description: "Identifying and bridging gaps in agricultural practices through data-driven insights and recommendations.",
-                    features: [
-                        { title: "Practice Analysis", description: "Identification of gaps in current agricultural practices", icon: "fas fa-search" },
-                        { title: "Resource Optimization", description: "Recommendations for efficient resource utilization", icon: "fas fa-tint" }
-                    ]
-                },
-                {
-                    title: "Seed Quality Assessment",
-                    description: "AI-powered seed inspection and viability prediction ensuring optimal germination and crop potential.",
-                    features: [
-                        { title: "Quality Inspection", description: "Comprehensive seed quality evaluation using AI", icon: "fas fa-eye" },
-                        { title: "Viability Testing", description: "Assessment of seed germination potential", icon: "fas fa-heartbeat" }
-                    ]
-                },
-                {
-                    title: "Advisory",
-                    description: "Real-time expert guidance and recommendations for crop management, pest control, and yield optimization.",
-                    features: [
-                        { title: "Crop Management", description: "Expert advice on crop selection and management", icon: "fas fa-leaf" },
-                        { title: "Pest Control", description: "Guidance on pest identification and management", icon: "fas fa-bug" }
-                    ]
-                },
-                {
-                    title: "Crop Health Monitor",
-                    description: "Continuous monitoring of crop health, disease detection, and nutrient deficiency identification.",
-                    features: [
-                        { title: "Health Monitoring", description: "Continuous tracking of crop health status", icon: "fas fa-heartbeat" },
-                        { title: "Disease Detection", description: "Early detection of crop diseases and infections", icon: "fas fa-stethoscope" }
-                    ]
-                },
-                {
-                    title: "Distribution Support",
-                    description: "Optimized logistics and supply chain management for efficient produce distribution and market access.",
-                    features: [
-                        { title: "Logistics Management", description: "Optimization of transportation and delivery", icon: "fas fa-truck" },
-                        { title: "Supply Chain", description: "Efficient supply chain coordination", icon: "fas fa-boxes" }
-                    ]
-                },
-                {
-                    title: "Insurance Support",
-                    description: "Comprehensive insurance solutions including gap insurance and third-party support for risk coverage.",
-                    features: [
-                        { title: "Risk Coverage", description: "Comprehensive insurance protection", icon: "fas fa-shield-alt" },
-                        { title: "Gap Insurance", description: "Coverage for production gaps and losses", icon: "fas fa-umbrella" }
-                    ]
-                }
-            ];
-
-            let currentStep = 1;
-            const totalSteps = 7;
-            const steps = document.querySelectorAll('.step');
-            const stepTitle = document.getElementById('stepTitle');
-            const stepDescription = document.getElementById('stepDescription');
-            const stepFeatures = document.getElementById('stepFeatures');
-            const currentStepNumber = document.getElementById('currentStepNumber');
-            const stepProgress = document.getElementById('stepProgress');
-            const prevStepBtn = document.getElementById('prevStep');
-            const nextStepBtn = document.getElementById('nextStep');
-
-            // Initialize
-            updateStepDetails(currentStep);
-
-            // Event Listeners
-            steps.forEach(step => {
-                step.addEventListener('click', function () {
-                    const stepNum = parseInt(this.getAttribute('data-step'));
-                    navigateToStep(stepNum);
-                });
-            });
-
-            prevStepBtn.addEventListener('click', () => {
-                if (currentStep > 1) navigateToStep(currentStep - 1);
-            });
-
-            nextStepBtn.addEventListener('click', () => {
-                if (currentStep < totalSteps) navigateToStep(currentStep + 1);
-            });
-
-            function navigateToStep(stepNum) {
-                currentStep = stepNum;
-
-                // Update Active Step
-                steps.forEach(s => {
-                    s.classList.toggle('active', parseInt(s.getAttribute('data-step')) === currentStep);
-                });
-
-                // Update Buttons
-                prevStepBtn.disabled = currentStep === 1;
-                nextStepBtn.disabled = currentStep === totalSteps;
-
-                // Update Details
-                updateStepDetails(currentStep);
-            }
-
-            function updateStepDetails(stepNum) {
-                const data = lifeCycleSteps[stepNum - 1];
-                if (!data) return;
-
-                // Animate Out
-                const detailsContainer = document.getElementById('stepDetails');
-
-                // Update Content
-                document.querySelector('.step-badge').textContent = stepNum;
-                stepTitle.textContent = data.title;
-                stepDescription.textContent = data.description;
-                currentStepNumber.textContent = stepNum;
-                stepProgress.textContent = data.title;
-
-                stepFeatures.innerHTML = '';
-                if (data.features) {
-                    data.features.forEach(f => {
-                        stepFeatures.innerHTML += `
-                            <div class="feature-item">
-                                <div class="feature-icon"><i class="${f.icon}"></i></div>
-                                <div class="feature-text">
-                                    <h4>${f.title}</h4>
-                                    <p>${f.description}</p>
-                                </div>
-                            </div>
-                         `;
-                    });
-                }
-            }
-        });
-    </script>
+    <script src="js/services.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
