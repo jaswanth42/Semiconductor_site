@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+he code<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -58,11 +58,476 @@
             <div class="flowchart-section">
                 <h3><i class="fas fa-project-diagram"></i> Life Cycle Flowchart</h3>
 
-                <!-- Desktop: Circular Flowchart -->
-                <div class="circular-flowchart-container">
-                    <div class="circular-steps-wrapper">
-                        <div class="circular-steps" id="circularSteps">
-                            <!-- Steps will be dynamically positioned -->
+                            <div class="steps-wrapper">
+                                <div class="connection-lines">
+                                    <div class="dotted-line">
+                                        <div class="moving-dot"></div>
+                                    </div>
+                                </div>
+                                <div class="steps-grid" id="stepsGrid">
+                                    <div class="step active" data-step="1">
+                                        <div class="step-number">1</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Land Assure"></div>
+                                            <h3>Land Assure</h3>
+                                            <p>Comprehensive land assessment and suitability analysis.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="2">
+                                        <div class="step-number">2</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img src="asserts/about_page/gap.jpg"
+                                                    alt="Gap Assist"></div>
+                                            <h3>Gap Assist</h3>
+                                            <p>Identifying and bridging gaps in agricultural practices.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="3">
+                                        <div class="step-number">3</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Seed Quality"></div>
+                                            <h3>Seed Quality</h3>
+                                            <p>AI-powered seed inspection and viability prediction.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="4">
+                                        <div class="step-number">4</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Advisory"></div>
+                                            <h3>Advisory</h3>
+                                            <p>Real-time expert guidance and recommendations.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="5">
+                                        <div class="step-number">5</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img src="asserts/about_page/crop.png"
+                                                    alt="Crop Health"></div>
+                                            <h3>Crop Health</h3>
+                                            <p>Continuous monitoring of crop health and disease detection.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="6">
+                                        <div class="step-number">6</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Distribution"></div>
+                                            <h3>Distribution</h3>
+                                            <p>Optimized logistics and supply chain management.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="7">
+                                        <div class="step-number">7</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Insurance"></div>
+                                            <h3>Insurance</h3>
+                                            <p>Comprehensive insurance solutions including gap insurance.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                <!-- Slide 1: Life Cycle Assure -->
+                <div class="service-slide active"
+                    style="display: block; width: 100%; transition: opacity 0.5s ease; position: relative; padding: 0 80px; box-sizing: border-box;">
+                    <section class="service-section" id="service-0">
+                        <div class="lifecycle-container">
+                            <!-- Step Details Section (Moved up for better layout in slider) -->
+                            <div class="step-details" id="stepDetails" style="margin-bottom: 40px;">
+                                <h2>
+                                    <span class="step-badge">1</span>
+                                    <span id="stepTitle">Land Assure</span>
+                                </h2>
+                                <p id="stepDescription">Comprehensive land assessment and suitability analysis for
+                                    optimal agricultural planning and risk mitigation.</p>
+                                <div class="step-features" id="stepFeatures"></div>
+                                <div class="step-navigation">
+                                    <button class="nav-btn" id="prevStep" disabled><i class="fas fa-chevron-left"></i>
+                                        Previous Step</button>
+                                    <div class="step-counter">
+                                        <span class="current-step">Step <span id="currentStepNumber">1</span> of
+                                            7</span>
+                                        <span class="step-progress" id="stepProgress">Land Assure</span>
+                                    </div>
+                                    <button class="nav-btn" id="nextStep">Next Step <i
+                                            class="fas fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="steps-wrapper">
+                                <div class="connection-lines">
+                                    <div class="dotted-line">
+                                        <div class="moving-dot"></div>
+                                    </div>
+                                </div>
+                                <div class="steps-grid" id="stepsGrid">
+                                    <div class="step active" data-step="1">
+                                        <div class="step-number">1</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Land Assure"></div>
+                                            <h3>Land Assure</h3>
+                                            <p>Comprehensive land assessment and suitability analysis.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="2">
+                                        <div class="step-number">2</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img src="asserts/about_page/gap.jpg"
+                                                    alt="Gap Assist"></div>
+                                            <h3>Gap Assist</h3>
+                                            <p>Identifying and bridging gaps in agricultural practices.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="3">
+                                        <div class="step-number">3</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Seed Quality"></div>
+                                            <h3>Seed Quality</h3>
+                                            <p>AI-powered seed inspection and viability prediction.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="4">
+                                        <div class="step-number">4</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Advisory"></div>
+                                            <h3>Advisory</h3>
+                                            <p>Real-time expert guidance and recommendations.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="5">
+                                        <div class="step-number">5</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img src="asserts/about_page/crop.png"
+                                                    alt="Crop Health"></div>
+                                            <h3>Crop Health</h3>
+                                            <p>Continuous monitoring of crop health and disease detection.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="6">
+                                        <div class="step-number">6</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Distribution"></div>
+                                            <h3>Distribution</h3>
+                                            <p>Optimized logistics and supply chain management.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="7">
+                                        <div class="step-number">7</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Insurance"></div>
+                                            <h3>Insurance</h3>
+                                            <p>Comprehensive insurance solutions including gap insurance.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+>>>>>>> 7882e8f7530eed3001271f95598104cd01549013
+=======
+                <!-- Slide 1: Life Cycle Assure -->
+                <div class="service-slide active"
+                    style="display: block; width: 100%; transition: opacity 0.5s ease; position: relative; padding: 0 80px; box-sizing: border-box;">
+                    <section class="service-section" id="service-0">
+                        <div class="lifecycle-container">
+                            <!-- Step Details Section (Moved up for better layout in slider) -->
+                            <div class="step-details" id="stepDetails" style="margin-bottom: 40px;">
+                                <h2>
+                                    <span class="step-badge">1</span>
+                                    <span id="stepTitle">Land Assure</span>
+                                </h2>
+                                <p id="stepDescription">Comprehensive land assessment and suitability analysis for
+                                    optimal agricultural planning and risk mitigation.</p>
+                                <div class="step-features" id="stepFeatures"></div>
+                                <div class="step-navigation">
+                                    <button class="nav-btn" id="prevStep" disabled><i class="fas fa-chevron-left"></i>
+                                        Previous Step</button>
+                                    <div class="step-counter">
+                                        <span class="current-step">Step <span id="currentStepNumber">1</span> of
+                                            7</span>
+                                        <span class="step-progress" id="stepProgress">Land Assure</span>
+                                    </div>
+                                    <button class="nav-btn" id="nextStep">Next Step <i
+                                            class="fas fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="steps-wrapper">
+                                <div class="connection-lines">
+                                    <div class="dotted-line">
+                                        <div class="moving-dot"></div>
+                                    </div>
+                                </div>
+                                <div class="steps-grid" id="stepsGrid">
+                                    <div class="step active" data-step="1">
+                                        <div class="step-number">1</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Land Assure"></div>
+                                            <h3>Land Assure</h3>
+                                            <p>Comprehensive land assessment and suitability analysis.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="2">
+                                        <div class="step-number">2</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img src="asserts/about_page/gap.jpg"
+                                                    alt="Gap Assist"></div>
+                                            <h3>Gap Assist</h3>
+                                            <p>Identifying and bridging gaps in agricultural practices.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="3">
+                                        <div class="step-number">3</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Seed Quality"></div>
+                                            <h3>Seed Quality</h3>
+                                            <p>AI-powered seed inspection and viability prediction.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="4">
+                                        <div class="step-number">4</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Advisory"></div>
+                                            <h3>Advisory</h3>
+                                            <p>Real-time expert guidance and recommendations.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="5">
+                                        <div class="step-number">5</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img src="asserts/about_page/crop.png"
+                                                    alt="Crop Health"></div>
+                                            <h3>Crop Health</h3>
+                                            <p>Continuous monitoring of crop health and disease detection.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="6">
+                                        <div class="step-number">6</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Distribution"></div>
+                                            <h3>Distribution</h3>
+                                            <p>Optimized logistics and supply chain management.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="7">
+                                        <div class="step-number">7</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Insurance"></div>
+                                            <h3>Insurance</h3>
+                                            <p>Comprehensive insurance solutions including gap insurance.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+=======
+                            <div class="steps-wrapper">
+                                <div class="connection-lines">
+                                    <div class="dotted-line">
+                                        <div class="moving-dot"></div>
+                                    </div>
+                                </div>
+                                <div class="steps-grid" id="stepsGrid">
+                                    <div class="step active" data-step="1">
+                                        <div class="step-number">1</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Land Assure"></div>
+                                            <h3>Land Assure</h3>
+                                            <p>Comprehensive land assessment and suitability analysis.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="2">
+                                        <div class="step-number">2</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img src="asserts/about_page/gap.jpg"
+                                                    alt="Gap Assist"></div>
+                                            <h3>Gap Assist</h3>
+                                            <p>Identifying and bridging gaps in agricultural practices.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="3">
+                                        <div class="step-number">3</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Seed Quality"></div>
+                                            <h3>Seed Quality</h3>
+                                            <p>AI-powered seed inspection and viability prediction.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="4">
+                                        <div class="step-number">4</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Advisory"></div>
+                                            <h3>Advisory</h3>
+                                            <p>Real-time expert guidance and recommendations.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="5">
+                                        <div class="step-number">5</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img src="asserts/about_page/crop.png"
+                                                    alt="Crop Health"></div>
+                                            <h3>Crop Health</h3>
+                                            <p>Continuous monitoring of crop health and disease detection.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="6">
+                                        <div class="step-number">6</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Distribution"></div>
+                                            <h3>Distribution</h3>
+                                            <p>Optimized logistics and supply chain management.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="7">
+                                        <div class="step-number">7</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Insurance"></div>
+                                            <h3>Insurance</h3>
+                                            <p>Comprehensive insurance solutions including gap insurance.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                <!-- Slide 1: Life Cycle Assure -->
+                <div class="service-slide active"
+                    style="display: block; width: 100%; transition: opacity 0.5s ease; position: relative; padding: 0 80px; box-sizing: border-box;">
+                    <section class="service-section" id="service-0">
+                        <div class="lifecycle-container">
+                            <!-- Step Details Section (Moved up for better layout in slider) -->
+                            <div class="step-details" id="stepDetails" style="margin-bottom: 40px;">
+                                <h2>
+                                    <span class="step-badge">1</span>
+                                    <span id="stepTitle">Land Assure</span>
+                                </h2>
+                                <p id="stepDescription">Comprehensive land assessment and suitability analysis for
+                                    optimal agricultural planning and risk mitigation.</p>
+                                <div class="step-features" id="stepFeatures"></div>
+                                <div class="step-navigation">
+                                    <button class="nav-btn" id="prevStep" disabled><i class="fas fa-chevron-left"></i>
+                                        Previous Step</button>
+                                    <div class="step-counter">
+                                        <span class="current-step">Step <span id="currentStepNumber">1</span> of
+                                            7</span>
+                                        <span class="step-progress" id="stepProgress">Land Assure</span>
+                                    </div>
+                                    <button class="nav-btn" id="nextStep">Next Step <i
+                                            class="fas fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="steps-wrapper">
+                                <div class="connection-lines">
+                                    <div class="dotted-line">
+                                        <div class="moving-dot"></div>
+                                    </div>
+                                </div>
+                                <div class="steps-grid" id="stepsGrid">
+                                    <div class="step active" data-step="1">
+                                        <div class="step-number">1</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Land Assure"></div>
+                                            <h3>Land Assure</h3>
+                                            <p>Comprehensive land assessment and suitability analysis.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="2">
+                                        <div class="step-number">2</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img src="asserts/about_page/gap.jpg"
+                                                    alt="Gap Assist"></div>
+                                            <h3>Gap Assist</h3>
+                                            <p>Identifying and bridging gaps in agricultural practices.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="3">
+                                        <div class="step-number">3</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Seed Quality"></div>
+                                            <h3>Seed Quality</h3>
+                                            <p>AI-powered seed inspection and viability prediction.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="4">
+                                        <div class="step-number">4</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Advisory"></div>
+                                            <h3>Advisory</h3>
+                                            <p>Real-time expert guidance and recommendations.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="5">
+                                        <div class="step-number">5</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img src="asserts/about_page/crop.png"
+                                                    alt="Crop Health"></div>
+                                            <h3>Crop Health</h3>
+                                            <p>Continuous monitoring of crop health and disease detection.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="6">
+                                        <div class="step-number">6</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Distribution"></div>
+                                            <h3>Distribution</h3>
+                                            <p>Optimized logistics and supply chain management.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="7">
+                                        <div class="step-number">7</div>
+                                        <div class="step-content">
+                                            <div class="step-image"><img
+                                                    src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&h=200&q=80"
+                                                    alt="Insurance"></div>
+                                            <h3>Insurance</h3>
+                                            <p>Comprehensive insurance solutions including gap insurance.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+>>>>>>> 7882e8f7530eed3001271f95598104cd01549013
                         </div>
 
                         <div class="flowchart-center">
@@ -168,4 +633,8 @@
     <script src="js/script.js"></script>
 </body>
 
+
 </html>
+
+
+
